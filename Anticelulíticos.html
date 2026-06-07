@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CeluliteCiência — O Guia Completo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6F5;--surface:#FFFFFF;--surface-teal:#EAF4F2;
+  --primary:#0A2A2E;--accent:#00A896;--accent-hover:#007F70;
+  --accent-pale:#D5EFEC;--accent-mid:#4CC9BE;
+  --red:#C0392B;--red-bg:#FEF2F1;--red-border:#FECDC9;
+  --green:#0F6B4A;--green-bg:#ECFDF5;--green-border:#A7F3D0;
+  --text:#1C2E32;--muted:#5A7278;--border:#D4E5E2;--border-light:#E8F0EE;
+  --r:14px;--r-sm:8px;
+  --sh:0 2px 16px rgba(10,42,46,.07);--sh-md:0 6px 30px rgba(10,42,46,.11);--sh-lg:0 16px 56px rgba(10,42,46,.16);
+  --ff-d:'Playfair Display',Georgia,serif;
+  --ff-b:'Plus Jakarta Sans',sans-serif;
+  --tr:.28s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-b);background:var(--bg);color:var(--text);line-height:1.72;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--ff-d);line-height:1.18;color:var(--primary)}
+h1{font-size:clamp(2.4rem,5vw,4.4rem)}
+h2{font-size:clamp(1.7rem,3vw,2.6rem)}
+h3{font-size:clamp(1.2rem,2vw,1.55rem)}
+h4{font-size:1.12rem;font-family:var(--ff-b);font-weight:700}
+p{color:var(--text);line-height:1.75}
+a{color:inherit;text-decoration:none}
+.container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+section{padding:100px 0}
+img{display:block;max-width:100%}
+
+#scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-mid));width:0%;z-index:2000;transition:width .08s linear}
+
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:box-shadow var(--tr)}
+#navbar.scrolled{box-shadow:0 2px 20px rgba(10,42,46,.1)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.5rem;max-width:1180px;margin:0 auto;gap:1rem}
+.nav-logo{font-family:var(--ff-d);font-size:1.1rem;font-weight:700;color:var(--primary);letter-spacing:-.02em;white-space:nowrap}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:.1rem;list-style:none;flex-wrap:wrap}
+.nav-link{font-size:.77rem;font-weight:600;color:var(--muted);padding:.35rem .65rem;border-radius:50px;transition:all var(--tr);letter-spacing:.01em;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--accent);background:var(--accent-pale)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--primary);line-height:1;padding:.2rem}
+
+/* ====== HERO ====== */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px;background:var(--primary)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 65% 60% at 72% 42%,rgba(0,168,150,.2) 0%,transparent 60%),radial-gradient(ellipse 45% 50% at 12% 72%,rgba(0,100,90,.15) 0%,transparent 55%),linear-gradient(145deg,#0A2A2E 0%,#0C3540 55%,#0A2A2E 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,168,150,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,168,150,.05) 1px,transparent 1px);background-size:48px 48px;opacity:.7}
+.hero-glow{position:absolute;top:28%;right:3%;width:420px;height:420px;border-radius:50%;background:rgba(0,168,150,.07);filter:blur(70px);animation:pulse 7s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.hero-content{position:relative;z-index:2;max-width:750px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:1.4rem}
+.hero-eyebrow::before{content:'';display:block;width:30px;height:2px;background:var(--accent-mid)}
+#hero h1{color:#fff;font-weight:500;margin-bottom:1.4rem;font-style:italic}
+#hero h1 em{font-style:normal;color:var(--accent-mid);font-weight:700}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:560px;margin-bottom:2.2rem;line-height:1.82}
+.hero-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;font-weight:700;font-size:.88rem;padding:.88rem 1.9rem;border-radius:50px;transition:all var(--tr);letter-spacing:.03em;border:2px solid transparent}
+.hero-cta:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,168,150,.35)}
+.hero-cta svg{width:17px;height:17px;flex-shrink:0}
+
+.hero-photo-wrap{position:relative;z-index:2;margin-top:3.5rem}
+.hero-comparison{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;max-width:720px}
+.hero-comp-card{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 32px rgba(0,0,0,.35);transition:transform .3s ease}
+.hero-comp-card:hover{transform:translateY(-4px)}
+.hero-comp-card svg{width:100%;height:auto;display:block}
+.hero-comp-label{padding:.7rem 1rem;display:flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hero-comp-label.normal{background:#0C3D50;color:#4CC9BE;border-top:2px solid rgba(0,168,150,.4)}
+.hero-comp-label.celulite{background:#2A1A1A;color:#F48C85;border-top:2px solid rgba(192,57,43,.4)}
+.hero-comp-label span{display:block;font-size:.68rem;font-weight:400;letter-spacing:.02em;opacity:.7;margin-top:.1rem}
+
+.hero-stats{position:relative;z-index:2;display:flex;gap:0;margin-top:3rem;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);overflow:hidden;flex-wrap:wrap}
+.h-stat{flex:1;min-width:120px;padding:1.2rem 1.4rem;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.h-stat:last-child{border-right:none}
+.h-stat-val{font-family:var(--ff-d);font-size:1.9rem;font-weight:700;color:#fff;line-height:1}
+.h-stat-lbl{font-size:.7rem;color:rgba(255,255,255,.48);letter-spacing:.05em;margin-top:.3rem}
+
+.sec-label{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem}
+.sec-label::before{content:'';display:block;width:20px;height:2px;background:var(--accent)}
+.sec-title{margin-bottom:.5rem}
+.sec-sub{font-size:.97rem;color:var(--muted);max-width:640px;margin-bottom:3rem;line-height:1.8}
+
+.fade{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade.vis{opacity:1;transform:none}
+.fd1{transition-delay:.1s}.fd2{transition-delay:.2s}.fd3{transition-delay:.3s}.fd4{transition-delay:.4s}
+
+.info-card{background:var(--surface);border-radius:var(--r);padding:1.75rem;box-shadow:var(--sh);border:1px solid var(--border-light)}
+
+/* ====== O QUE É ====== */
+#oque-e{background:var(--surface)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:0}
+.ccard{border-radius:var(--r);padding:2rem;border:1.5px solid}
+.ccard.cosm{background:var(--surface-teal);border-color:var(--border)}
+.ccard.inf{background:#FEF4F3;border-color:var(--red-border)}
+.ctag{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.26rem .8rem;border-radius:50px;margin-bottom:1rem}
+.cosm .ctag{background:var(--accent-pale);color:var(--accent-hover)}
+.inf .ctag{background:#FFE0DC;color:#9B2B1B}
+.ccard h3{margin-bottom:.75rem;font-size:1.4rem}
+.ccard p{font-size:.93rem;line-height:1.77}
+.clist{list-style:none;margin-top:1rem}
+.clist li{display:flex;align-items:baseline;gap:.6rem;font-size:.87rem;padding:.28rem 0;border-top:1px solid rgba(0,0,0,.05)}
+.clist li::before{content:'•';font-weight:800;flex-shrink:0}
+.cosm .clist li::before{color:var(--accent)}
+.inf .clist li::before{color:var(--red)}
+.warn-box{display:flex;align-items:flex-start;gap:.6rem;background:#FFF4F3;border:1px solid #FFBAB4;border-radius:var(--r-sm);padding:.75rem 1rem;font-size:.83rem;color:#9B2B1B;margin-top:1.25rem;font-weight:500;line-height:1.55}
+
+.diagram-wrap{background:var(--surface);border-radius:var(--r);padding:1.6rem 1.8rem;box-shadow:var(--sh);border:1px solid var(--border-light);margin:2rem 0;overflow:hidden}
+.diagram-title{font-size:.69rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.diagram-title::before{content:'';display:block;width:14px;height:2px;background:var(--accent)}
+.diagram-wrap svg{width:100%;height:auto;display:block}
+.diagram-caption{font-size:.78rem;color:var(--muted);margin-top:.8rem;font-style:italic;line-height:1.55;border-top:1px solid var(--border-light);padding-top:.7rem}
+.diagram-legend{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;margin-top:.8rem}
+.dl-item{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--muted)}
+.dl-swatch{width:13px;height:13px;border-radius:3px;flex-shrink:0}
+
+/* ====== FISIOPATOLOGIA ====== */
+#fisio{background:var(--bg)}
+.fisio-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.fisio-text p{margin-bottom:1rem;font-size:.96rem}
+.mech-box{background:var(--surface);border-radius:var(--r);padding:1.8rem;box-shadow:var(--sh);border:1px solid var(--border-light)}
+.steps{list-style:none}
+.step{display:flex;gap:1rem;margin-bottom:1.2rem;align-items:flex-start}
+.step-n{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-size:.73rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step-txt h5{font-weight:600;font-size:.88rem;color:var(--primary);margin-bottom:.15rem}
+.step-txt p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+.chip{font-size:.77rem;padding:.3rem .82rem;border-radius:50px;background:var(--accent-pale);color:var(--accent-hover);font-weight:500;border:1px solid var(--border)}
+
+/* ====== ABORDAGENS ====== */
+#tratamentos{background:var(--primary);padding:100px 0}
+#tratamentos .sec-label{color:var(--accent-mid)}
+#tratamentos .sec-title{color:#fff}
+#tratamentos .sec-sub{color:rgba(255,255,255,.55)}
+
+/* Invasion level tabs */
+.invasion-tabs{display:flex;gap:.6rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.inv-tab{font-size:.76rem;font-weight:700;letter-spacing:.05em;padding:.55rem 1.2rem;border-radius:50px;border:1.5px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6);cursor:pointer;transition:all var(--tr);background:rgba(255,255,255,.05)}
+.inv-tab:hover{border-color:rgba(0,168,150,.5);color:var(--accent-mid)}
+.inv-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.invasion-tier{margin-bottom:3rem}
+.tier-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:.9rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.tier-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:.4rem 1rem;border-radius:50px}
+.tier-badge.self{background:rgba(0,168,150,.2);color:#4CC9BE;border:1px solid rgba(0,168,150,.35)}
+.tier-badge.prof{background:rgba(59,130,246,.2);color:#93C5FD;border:1px solid rgba(59,130,246,.35)}
+.tier-badge.med{background:rgba(192,57,43,.2);color:#F48C85;border:1px solid rgba(192,57,43,.35)}
+.tier-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.5}
+
+.treat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1.1rem}
+.tcard{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);border-radius:var(--r);padding:1.65rem;transition:all var(--tr);cursor:default}
+.tcard:hover{background:rgba(0,168,150,.12);border-color:rgba(0,168,150,.38);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.25)}
+.tcard.prof-card:hover{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.35)}
+.tcard.med-card:hover{background:rgba(192,57,43,.08);border-color:rgba(192,57,43,.3)}
+.tcat{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:.65rem;display:block}
+.tcat.prof-cat{color:#93C5FD}
+.tcat.med-cat{color:#F48C85}
+.ticon{font-size:1.7rem;display:block;margin-bottom:.8rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3))}
+.tcard h4{color:#fff;font-family:var(--ff-d);font-size:1.12rem;margin-bottom:.6rem}
+.tcard p{color:rgba(255,255,255,.58);font-size:.84rem;line-height:1.68}
+
+/* ====== ROTULAGEM ====== */
+#rotulagem{background:var(--surface)}
+.inci-box{background:var(--surface-teal);border-radius:var(--r);padding:2.4rem;border:1.5px solid var(--border);margin-bottom:2rem}
+.inci-rule{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.2rem}
+.inci-rule:last-child{margin-bottom:0}
+.inci-icon{flex-shrink:0;width:34px;height:34px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.88rem}
+.inci-text h5{font-weight:600;font-size:.9rem;color:var(--primary);margin-bottom:.2rem}
+.inci-text p{font-size:.83rem;color:var(--muted);line-height:1.55}
+.inci-formula{background:var(--primary);border-radius:10px;padding:1.4rem 1.8rem;margin-top:1.4rem}
+.inci-f-label{font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:.65rem}
+.inci-f-text{font-family:'Courier New',monospace;font-size:.79rem;color:rgba(255,255,255,.68);line-height:1.9;word-break:break-all}
+.inci-f-text .at{color:#4ECDC4;font-weight:700}
+.inci-f-note{font-size:.72rem;color:rgba(255,255,255,.36);margin-top:.65rem}
+.claims-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.claim-box{border-radius:var(--r);padding:1.5rem;border:1.5px solid}
+.claim-box.ok{background:var(--green-bg);border-color:var(--green-border)}
+.claim-box.bad{background:var(--red-bg);border-color:var(--red-border)}
+.cb-title{display:flex;align-items:center;gap:.5rem;font-size:.71rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.ok .cb-title{color:#065F46}.bad .cb-title{color:#991B1B}
+.cb-list{list-style:none}
+.cb-list li{font-size:.86rem;padding:.27rem 0;display:flex;align-items:baseline;gap:.5rem;border-top:1px solid rgba(0,0,0,.05)}
+.cb-list li:first-child{border-top:none}
+.ok .cb-list li::before{content:'✓';color:#059669;font-weight:700}
+.bad .cb-list li::before{content:'✕';color:#DC2626;font-weight:700}
+.cert-note{font-size:.77rem;color:#991B1B;margin-top:.8rem;line-height:1.55;border-top:1px solid var(--red-border);padding-top:.7rem}
+
+/* ====== FORMAS FARMACÊUTICAS ====== */
+#formas{background:var(--bg)}
+.formas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-top:2rem}
+.forma-card{background:var(--surface);border-radius:var(--r);padding:1.8rem;box-shadow:var(--sh);border:1px solid var(--border-light);transition:all var(--tr);position:relative;overflow:hidden}
+.forma-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.forma-card.gel::before{background:linear-gradient(90deg,#00A896,#4CC9BE)}
+.forma-card.creme::before{background:linear-gradient(90deg,#F4A261,#FDDBB0)}
+.forma-card.oleo::before{background:linear-gradient(90deg,#C0392B,#E07B3F)}
+.forma-card.serum::before{background:linear-gradient(90deg,#3B82F6,#93C5FD)}
+.forma-card.lotion::before{background:linear-gradient(90deg,#8B5CF6,#C4B5FD)}
+.forma-card.espuma::before{background:linear-gradient(90deg,#0F6B4A,#4CC9BE)}
+.forma-card:hover{box-shadow:var(--sh-md);transform:translateY(-4px)}
+.forma-icon{font-size:2rem;margin-bottom:.9rem;display:block}
+.forma-tag{display:inline-block;font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .65rem;border-radius:50px;margin-bottom:.65rem;background:var(--accent-pale);color:var(--accent-hover)}
+.forma-card h4{font-family:var(--ff-d);font-size:1.12rem;margin-bottom:.5rem;color:var(--primary)}
+.forma-card p{font-size:.86rem;color:var(--muted);line-height:1.68;margin-bottom:.9rem}
+.forma-pros{list-style:none;margin-bottom:.7rem}
+.forma-pros li{font-size:.81rem;color:var(--text);padding:.22rem 0;display:flex;gap:.5rem;align-items:baseline;border-top:1px solid var(--border-light)}
+.forma-pros li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0}
+.forma-cons{list-style:none}
+.forma-cons li{font-size:.81rem;color:var(--muted);padding:.22rem 0;display:flex;gap:.5rem;align-items:baseline;border-top:1px solid var(--border-light)}
+.forma-cons li::before{content:'−';color:var(--red);font-weight:700;flex-shrink:0}
+.forma-ideal{display:inline-block;font-size:.72rem;background:var(--surface-teal);border:1px solid var(--border);border-radius:var(--r-sm);padding:.35rem .7rem;color:var(--accent-hover);font-weight:600;margin-top:.6rem}
+
+/* ====== FÓRMULA / PILARES ====== */
+#formula{background:var(--surface)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.pillar{background:var(--surface);border-radius:var(--r);padding:1.9rem;box-shadow:var(--sh);border-top:4px solid var(--accent);transition:all var(--tr)}
+.pillar:hover{box-shadow:var(--sh-md);transform:translateY(-4px)}
+.p-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--accent-pale);color:var(--accent);font-family:var(--ff-d);font-size:1.3rem;font-weight:700;margin-bottom:1rem}
+.pillar h4{font-family:var(--ff-d);font-size:1.22rem;margin-bottom:.3rem}
+.p-sub{font-size:.77rem;color:var(--muted);font-weight:500;letter-spacing:.04em;margin-bottom:1.2rem;line-height:1.4}
+.ing{display:flex;align-items:flex-start;gap:.65rem;padding:.65rem 0;border-top:1px solid var(--border-light)}
+.ing-badge{flex-shrink:0;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .5rem;border-radius:4px;background:var(--accent-pale);color:var(--accent);white-space:nowrap;margin-top:.12rem}
+.ing-info h6{font-weight:600;font-size:.85rem;color:var(--primary)}
+.ing-info p{font-size:.78rem;color:var(--muted);line-height:1.48;margin-top:.1rem}
+.p-note{background:var(--surface-teal);border-radius:var(--r-sm);border:1px solid var(--border);padding:.8rem 1rem;margin-top:1rem}
+.p-note p{font-size:.79rem;color:var(--muted);line-height:1.52}
+.p-note strong{color:var(--accent)}
+.excip{background:var(--surface-teal);border-radius:var(--r);padding:2rem;margin-top:1.5rem;border:1.5px solid var(--border)}
+.excip h4{font-family:var(--ff-d);font-size:1.12rem;margin-bottom:.5rem}
+.excip-sub{font-size:.87rem;color:var(--muted);margin-bottom:1.1rem}
+.excip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem}
+.eitem{background:#fff;border-radius:var(--r-sm);padding:.75rem 1rem;border:1px solid var(--border-light)}
+.e-inci{font-size:.65rem;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem}
+.e-name{font-size:.82rem;font-weight:600;color:var(--primary);margin-bottom:.14rem}
+.e-func{font-size:.76rem;color:var(--muted);line-height:1.48}
+
+/* ====== IDEAL PRODUCT SECTION ====== */
+#ideal{background:var(--primary);padding:110px 0}
+#ideal .sec-label{color:var(--accent-mid)}
+#ideal .sec-title{color:#fff}
+#ideal .sec-sub{color:rgba(255,255,255,.55)}
+.ideal-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:start;margin-top:1rem}
+.tube-viewer{position:relative;display:flex;flex-direction:column;gap:1.2rem}
+.tube-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:.5rem}
+.tube-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);overflow:hidden}
+.tube-card svg{width:100%;height:auto;display:block}
+.ideal-guide{display:flex;flex-direction:column;gap:1.2rem}
+.guide-block{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:1.4rem}
+.guide-block h5{font-family:var(--ff-d);font-size:1.05rem;color:#fff;margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem}
+.guide-block h5 span{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;font-family:var(--ff-b)}
+.guide-block p{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.65}
+.guide-block ul{list-style:none;margin-top:.65rem}
+.guide-block ul li{font-size:.83rem;color:rgba(255,255,255,.65);padding:.28rem 0;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:.55rem;align-items:baseline;line-height:1.5}
+.guide-block ul li::before{content:'→';color:var(--accent-mid);flex-shrink:0;font-weight:600}
+.inci-highlight{font-family:'Courier New',monospace;font-size:.78rem;color:rgba(255,255,255,.62);background:rgba(0,0,0,.3);border-radius:6px;padding:.7rem 1rem;margin-top:.7rem;line-height:1.85;word-break:break-all}
+.inci-highlight .key{color:#4ECDC4;font-weight:700}
+.label-decode{display:flex;flex-direction:column;gap:.55rem;margin-top:.75rem}
+.decode-row{display:flex;align-items:flex-start;gap:.8rem}
+.decode-badge{flex-shrink:0;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:4px;min-width:70px;text-align:center}
+.decode-badge.ok{background:rgba(0,168,150,.25);color:#4CC9BE}
+.decode-badge.warn{background:rgba(255,200,0,.2);color:#F5B942}
+.decode-badge.bad{background:rgba(192,57,43,.25);color:#F48C85}
+.decode-txt{font-size:.82rem;color:rgba(255,255,255,.62);line-height:1.5}
+.decode-txt strong{color:rgba(255,255,255,.88)}
+
+/* ====== APLICAÇÃO ====== */
+#aplicacao{background:var(--surface)}
+.aplic-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.aplic-steps{list-style:none}
+.astep{display:flex;gap:1.1rem;margin-bottom:1.65rem;align-items:flex-start}
+.astep-icon{flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--surface-teal);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.astep-txt h5{font-weight:600;font-size:.92rem;color:var(--primary);margin-bottom:.28rem}
+.astep-txt p{font-size:.84rem;color:var(--muted);line-height:1.58}
+.timeline-hl{background:var(--primary);border-radius:var(--r);padding:1.65rem;margin-top:.5rem;text-align:center}
+.thl-val{font-family:var(--ff-d);font-size:2.8rem;font-weight:700;color:var(--accent-mid);line-height:1;display:block}
+.thl-lbl{font-size:.84rem;color:rgba(255,255,255,.62);margin-top:.5rem}
+.eval-section{margin-bottom:2rem}
+.eval-section-title{font-family:var(--ff-d);font-size:1.15rem;color:var(--primary);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:2px solid var(--border-light)}
+.eval-list{display:flex;flex-direction:column;gap:.85rem}
+.eval-item{background:var(--bg);border-radius:10px;padding:1.05rem 1.15rem;border:1px solid var(--border-light);display:flex;align-items:flex-start;gap:.85rem}
+.eval-ic{flex-shrink:0;width:38px;height:38px;border-radius:10px;background:var(--accent-pale);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.eval-txt h5{font-weight:600;font-size:.86rem;color:var(--primary);margin-bottom:.14rem}
+.eval-txt p{font-size:.79rem;color:var(--muted);line-height:1.48}
+.scale-visual{margin:1.2rem 0}
+.scale-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem}
+.scale-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.scale-item{border-radius:var(--r-sm);overflow:hidden;border:2px solid var(--border-light);transition:border-color var(--tr)}
+.scale-item:hover{border-color:var(--accent)}
+.scale-item svg{width:100%;height:auto;display:block}
+.scale-badge{padding:.45rem .6rem;background:var(--surface);border-top:1px solid var(--border-light);text-align:center}
+.scale-badge span{display:block;font-size:.72rem;font-weight:700;color:var(--primary)}
+.scale-badge small{font-size:.67rem;color:var(--muted)}
+.at-home-tips{background:var(--surface-teal);border-radius:var(--r);padding:1.5rem;border:1px solid var(--border);margin-top:1rem}
+.at-home-tips h5{font-weight:700;font-size:.9rem;color:var(--primary);margin-bottom:.7rem}
+.at-home-tips ul{list-style:none}
+.at-home-tips ul li{font-size:.84rem;color:var(--muted);padding:.3rem 0;border-top:1px solid var(--border-light);display:flex;gap:.55rem;align-items:baseline;line-height:1.5}
+.at-home-tips ul li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0}
+
+/* ====== MITOS ====== */
+#mitos{background:var(--bg)}
+.accordion{display:flex;flex-direction:column;gap:.65rem}
+.acc-item{background:var(--surface);border-radius:10px;border:1.5px solid var(--border-light);overflow:hidden;transition:border-color var(--tr)}
+.acc-item.open{border-color:var(--accent)}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.35rem;cursor:pointer;user-select:none;gap:1rem}
+.acc-left{display:flex;align-items:center;gap:.8rem}
+.acc-badge{flex-shrink:0;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .68rem;border-radius:50px;min-width:55px;text-align:center}
+.acc-badge.mito{background:#FEE2E2;color:var(--red)}
+.acc-badge.verd{background:#D1FAE5;color:var(--green)}
+.acc-q{font-weight:600;font-size:.92rem;color:var(--primary);line-height:1.4}
+.acc-arrow{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--bg);border:1px solid var(--border-light);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);transition:transform var(--tr),background var(--tr),border-color var(--tr)}
+.acc-item.open .acc-arrow{transform:rotate(180deg);background:var(--accent-pale);border-color:var(--accent);color:var(--accent)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding var(--tr);padding:0 1.35rem}
+.acc-item.open .acc-body{max-height:340px;padding:0 1.35rem 1.1rem}
+.acc-body p{font-size:.87rem;line-height:1.75;color:var(--muted);border-top:1px solid var(--border-light);padding-top:.85rem}
+.acc-body p strong{color:var(--primary)}
+
+/* ====== REFERÊNCIAS ====== */
+#referencias{background:var(--surface);padding:80px 0}
+.ref-header{margin-bottom:2.5rem}
+.ref-grid{display:flex;flex-direction:column;gap:.75rem}
+.ref-item{background:var(--bg);border-radius:10px;padding:1.1rem 1.4rem;border:1px solid var(--border-light);display:flex;gap:1rem;align-items:flex-start;transition:border-color var(--tr)}
+.ref-item:hover{border-color:var(--accent)}
+.ref-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent-pale);color:var(--accent);font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:.1rem}
+.ref-body{}
+.ref-authors{font-size:.84rem;color:var(--primary);font-weight:600;line-height:1.5;margin-bottom:.15rem}
+.ref-title{font-size:.84rem;color:var(--text);font-style:italic;line-height:1.55;margin-bottom:.25rem}
+.ref-journal{font-size:.8rem;color:var(--muted);line-height:1.45;margin-bottom:.3rem}
+.ref-doi{display:inline-flex;align-items:center;gap:.35rem;font-size:.75rem;color:var(--accent);font-weight:600;border:1px solid var(--accent-pale);border-radius:50px;padding:.2rem .7rem;background:var(--accent-pale);transition:all var(--tr)}
+.ref-doi:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.ref-note{font-size:.78rem;color:var(--muted);margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border-light);line-height:1.65;font-style:italic}
+
+footer{background:var(--primary);padding:2.5rem 0;text-align:center}
+.f-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+.f-brand{font-family:var(--ff-d);font-size:1.25rem;font-weight:600;color:#fff}
+.f-brand span{color:var(--accent-mid)}
+.f-disc{font-size:.81rem;color:rgba(255,255,255,.45);max-width:520px;margin:.7rem auto 0;line-height:1.68}
+.f-copy{font-size:.71rem;color:rgba(255,255,255,.26);margin-top:1rem}
+
+@media(max-width:960px){
+  .compare-grid,.fisio-grid,.aplic-grid,.ideal-layout{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .claims-grid{grid-template-columns:1fr}
+  .hero-comparison{grid-template-columns:1fr 1fr;max-width:500px}
+  .formas-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  section{padding:68px 0}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:1rem 1.5rem;gap:.3rem;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  .nav-toggle{display:block}
+  .hero-stats{flex-direction:column}
+  .h-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+  .h-stat:last-child{border-bottom:none}
+  .treat-grid{grid-template-columns:1fr}
+  .scale-grid{grid-template-columns:repeat(2,1fr)}
+  .formas-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .excip-grid{grid-template-columns:1fr}
+  #hero h1{font-size:2.2rem}
+  .hero-comparison{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Celulite<span>Ciência</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#oque-e" class="nav-link">O Que É</a></li>
+      <li><a href="#fisio" class="nav-link">Como Surge</a></li>
+      <li><a href="#tratamentos" class="nav-link">Abordagens</a></li>
+      <li><a href="#rotulagem" class="nav-link">Rótulos</a></li>
+      <li><a href="#formas" class="nav-link">Formas</a></li>
+      <li><a href="#formula" class="nav-link">Ingredientes</a></li>
+      <li><a href="#ideal" class="nav-link">O Ideal</a></li>
+      <li><a href="#aplicacao" class="nav-link">Como Aplicar</a></li>
+      <li><a href="#mitos" class="nav-link">Mitos</a></li>
+      <li><a href="#referencias" class="nav-link">Referências</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Guia de Saúde Cosmética</span>
+      <h1>A Ciência da<br><em>Celulite Cosmética</em></h1>
+      <p class="hero-sub">A celulite afeta 8 em cada 10 mulheres — e ainda assim é uma das condições mais mal compreendidas. Este guia explica o que se passa sob a sua pele, o que os cosméticos conseguem mesmo fazer, e como escolher e usar produtos com critério.</p>
+      <a href="#oque-e" class="hero-cta">
+        Saber mais
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-photo-wrap fade">
+      <div class="hero-comparison">
+        <div class="hero-comp-card">
+          <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="sg1" cx="40%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#FCDBB8"/>
+                <stop offset="60%" stop-color="#E8A870"/>
+                <stop offset="100%" stop-color="#C8844A"/>
+              </radialGradient>
+              <radialGradient id="hl1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </radialGradient>
+              <filter id="soft1"><feGaussianBlur stdDeviation="2.5"/></filter>
+              <filter id="skinTex">
+                <feTurbulence type="turbulence" baseFrequency="0.9 0.7" numOctaves="3" seed="8" result="t"/>
+                <feDisplacementMap in="SourceGraphic" in2="t" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+            </defs>
+            <rect width="320" height="220" fill="#C8844A"/>
+            <rect width="320" height="220" fill="url(#sg1)" opacity="0.95"/>
+            <rect width="320" height="220" fill="#E8A870" opacity="0.12" filter="url(#skinTex)"/>
+            <ellipse cx="120" cy="80" rx="80" ry="55" fill="url(#hl1)"/>
+            <ellipse cx="240" cy="130" rx="60" ry="40" fill="rgba(255,255,255,0.08)" filter="url(#soft1)"/>
+            <path d="M0,85 Q80,80 160,83 Q240,86 320,82" fill="none" stroke="rgba(180,110,55,0.18)" stroke-width="1.2"/>
+            <path d="M0,110 Q80,106 160,109 Q240,112 320,108" fill="none" stroke="rgba(180,110,55,0.15)" stroke-width="1"/>
+            <path d="M0,138 Q80,134 160,137 Q240,140 320,136" fill="none" stroke="rgba(180,110,55,0.12)" stroke-width="1"/>
+            <ellipse cx="70" cy="95" rx="50" ry="38" fill="rgba(252,190,130,0.2)" filter="url(#soft1)"/>
+            <ellipse cx="250" cy="140" rx="55" ry="40" fill="rgba(200,130,65,0.18)" filter="url(#soft1)"/>
+            <rect x="0" y="0" width="320" height="220" fill="url(#hl1)" opacity="0.3"/>
+            <rect x="0" y="186" width="320" height="34" fill="rgba(6,30,35,0.88)"/>
+            <text x="160" y="206" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11.5" font-weight="700" fill="#4CC9BE" letter-spacing="0.5">PELE SAUDÁVEL</text>
+            <text x="160" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" fill="rgba(255,255,255,0.55)">Superfície lisa, uniforme, firme</text>
+          </svg>
+          <div class="hero-comp-label normal">● Sem celulite<span>Estrutura subcutânea organizada e circulação fluida</span></div>
+        </div>
+        <div class="hero-comp-card">
+          <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="sg2" cx="50%" cy="40%" r="65%">
+                <stop offset="0%" stop-color="#EFA060"/>
+                <stop offset="55%" stop-color="#D48040"/>
+                <stop offset="100%" stop-color="#B06030"/>
+              </radialGradient>
+              <filter id="soft2"><feGaussianBlur stdDeviation="3"/></filter>
+              <filter id="soft2b"><feGaussianBlur stdDeviation="1.5"/></filter>
+              <radialGradient id="bump" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="rgba(255,200,140,0.7)"/>
+                <stop offset="100%" stop-color="rgba(200,130,60,0)"/>
+              </radialGradient>
+              <radialGradient id="dimple" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(100,50,15,0.55)"/>
+                <stop offset="100%" stop-color="rgba(100,50,15,0)"/>
+              </radialGradient>
+            </defs>
+            <rect width="320" height="220" fill="#B06030"/>
+            <rect width="320" height="220" fill="url(#sg2)" opacity="0.92"/>
+            <ellipse cx="38" cy="55" rx="28" ry="20" fill="#EFA868" opacity="0.85"/>
+            <ellipse cx="38" cy="52" rx="18" ry="11" fill="url(#bump)" opacity="0.6"/>
+            <ellipse cx="95" cy="48" rx="30" ry="22" fill="#F2B070" opacity="0.8"/>
+            <ellipse cx="95" cy="44" rx="20" ry="12" fill="url(#bump)" opacity="0.55"/>
+            <ellipse cx="158" cy="53" rx="32" ry="23" fill="#EFA868" opacity="0.85"/>
+            <ellipse cx="222" cy="49" rx="28" ry="20" fill="#F2B070" opacity="0.82"/>
+            <ellipse cx="288" cy="54" rx="26" ry="19" fill="#EFA868" opacity="0.80"/>
+            <ellipse cx="65" cy="98" rx="30" ry="22" fill="#EFA060" opacity="0.88"/>
+            <ellipse cx="128" cy="102" rx="33" ry="25" fill="#F2AE68" opacity="0.85"/>
+            <ellipse cx="196" cy="97" rx="31" ry="23" fill="#EFA060" opacity="0.82"/>
+            <ellipse cx="262" cy="101" rx="30" ry="22" fill="#F2AE68" opacity="0.80"/>
+            <ellipse cx="40" cy="158" rx="28" ry="20" fill="#EFA060" opacity="0.80"/>
+            <ellipse cx="100" cy="153" rx="30" ry="22" fill="#F2AE68" opacity="0.82"/>
+            <ellipse cx="164" cy="158" rx="33" ry="24" fill="#EFA060" opacity="0.85"/>
+            <ellipse cx="232" cy="155" rx="30" ry="22" fill="#F2AE68" opacity="0.82"/>
+            <ellipse cx="66" cy="75" rx="8" ry="22" fill="url(#dimple)" opacity="0.9"/>
+            <ellipse cx="127" cy="77" rx="8" ry="24" fill="url(#dimple)" opacity="0.85"/>
+            <ellipse cx="190" cy="75" rx="7" ry="22" fill="url(#dimple)" opacity="0.88"/>
+            <ellipse cx="96" cy="130" rx="8" ry="22" fill="url(#dimple)" opacity="0.85"/>
+            <ellipse cx="162" cy="132" rx="8" ry="23" fill="url(#dimple)" opacity="0.88"/>
+            <ellipse cx="226" cy="131" rx="7" ry="21" fill="url(#dimple)" opacity="0.82"/>
+            <rect x="0" y="186" width="320" height="34" fill="rgba(40,10,5,0.90)"/>
+            <text x="160" y="206" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11.5" font-weight="700" fill="#F48C85" letter-spacing="0.5">CELULITE</text>
+            <text x="160" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" fill="rgba(255,255,255,0.55)">Aspeto irregular "casca de laranja"</text>
+          </svg>
+          <div class="hero-comp-label celulite">● Com celulite<span>Lóbulos adiposos aumentados, septos endurecidos</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats fade fd2">
+      <div class="h-stat"><div class="h-stat-val">80–90%</div><div class="h-stat-lbl">das mulheres afetadas</div></div>
+      <div class="h-stat"><div class="h-stat-val">≥ 5</div><div class="h-stat-lbl">mecanismos que a causam</div></div>
+      <div class="h-stat"><div class="h-stat-val">12 sem.</div><div class="h-stat-lbl">para resultados visíveis</div></div>
+      <div class="h-stat"><div class="h-stat-val">~2%</div><div class="h-stat-lbl">dos homens afetados</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== O QUE É ===================== -->
+<section id="oque-e">
+  <div class="container">
+    <span class="sec-label">Definição</span>
+    <h2 class="sec-title">O que é a celulite?<br>Dois problemas, um nome</h2>
+    <p class="sec-sub">A palavra "celulite" é usada para descrever duas situações completamente diferentes — uma é estética, a outra é médica. Saber distingui-las pode poupar confusão e dinheiro, e em casos urgentes pode ser importante para a sua saúde.</p>
+
+    <div class="diagram-wrap fade">
+      <div class="diagram-title">Ilustração: as duas "celulites" — o que se passa sob a pele</div>
+      <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>.dg{font-family:'Plus Jakarta Sans',Arial,sans-serif;}.dg-title{font-size:12px;font-weight:700;}.dg-sub{font-size:9px;}.dg-label{font-size:9px;font-weight:600;}.dg-note{font-size:8px;}.dg-badge{font-size:9px;font-weight:700;}</style>
+          <filter id="gblur"><feGaussianBlur stdDeviation="2"/></filter>
+        </defs>
+        <g transform="translate(15,10)">
+          <rect width="385" height="296" rx="12" fill="#EAF4F2" stroke="#D4E5E2" stroke-width="1.5"/>
+          <text x="192" y="28" text-anchor="middle" fill="#00A896" class="dg dg-title">CELULITE COSMÉTICA</text>
+          <text x="192" y="44" text-anchor="middle" fill="#5A7278" class="dg dg-sub">Aspeto "casca de laranja" — condição estética</text>
+          <path d="M30,62 Q56,50 82,62 Q108,74 134,62 Q160,50 186,62 Q212,74 238,62 Q264,50 290,62 Q316,74 352,62 L352,88 L30,88 Z" fill="#F5C9A0" stroke="#E8A870" stroke-width="1.5"/>
+          <text x="192" y="80" text-anchor="middle" fill="#8B5E3C" class="dg dg-label">Pele — superfície irregular visível</text>
+          <rect x="30" y="88" width="322" height="36" fill="#FDDBB0" stroke="#E8A870" stroke-width="1"/>
+          <text x="192" y="110" text-anchor="middle" fill="#8B5E3C" class="dg dg-sub">Derme (colagénio mais fraco)</text>
+          <ellipse cx="78" cy="168" rx="36" ry="27" fill="#F4A261" stroke="#E07B3F" stroke-width="1.5"/>
+          <ellipse cx="155" cy="175" rx="40" ry="31" fill="#F4A261" stroke="#E07B3F" stroke-width="1.5"/>
+          <ellipse cx="240" cy="170" rx="38" ry="28" fill="#F4A261" stroke="#E07B3F" stroke-width="1.5"/>
+          <ellipse cx="314" cy="165" rx="31" ry="24" fill="#F4A261" stroke="#E07B3F" stroke-width="1.5"/>
+          <text x="155" y="176" text-anchor="middle" fill="#7C3E10" class="dg dg-note" font-weight="700">Gordura ↑</text>
+          <line x1="115" y1="124" x2="115" y2="196" stroke="#9B4A1B" stroke-width="2" stroke-dasharray="4,3"/>
+          <line x1="197" y1="124" x2="197" y2="204" stroke="#9B4A1B" stroke-width="2" stroke-dasharray="4,3"/>
+          <line x1="277" y1="124" x2="277" y2="198" stroke="#9B4A1B" stroke-width="2" stroke-dasharray="4,3"/>
+          <polygon points="110,192 115,202 120,192" fill="#9B4A1B"/>
+          <polygon points="192,200 197,210 202,200" fill="#9B4A1B"/>
+          <polygon points="272,194 277,204 282,194" fill="#9B4A1B"/>
+          <text x="192" y="222" text-anchor="middle" fill="#9B4A1B" class="dg dg-note">Septos verticais puxam para baixo ↓</text>
+          <rect x="30" y="228" width="322" height="34" fill="#F9D8B5" stroke="#E8A870" stroke-width="1" opacity=".7" rx="4"/>
+          <text x="192" y="249" text-anchor="middle" fill="#8B5E3C" class="dg dg-sub">Hipoderme — tecido subcutâneo</text>
+          <rect x="30" y="270" width="148" height="20" rx="10" fill="#00A896"/>
+          <text x="104" y="284" text-anchor="middle" fill="white" class="dg dg-badge">✓ Condição estética</text>
+          <rect x="184" y="270" width="168" height="20" rx="10" fill="#EAF4F2" stroke="#00A896" stroke-width="1"/>
+          <text x="268" y="284" text-anchor="middle" fill="#007F70" class="dg dg-badge">Sem risco médico direto</text>
+        </g>
+        <text x="450" y="168" text-anchor="middle" fill="#D4E5E2" font-family="Georgia,serif" font-size="24" font-weight="700">VS</text>
+        <g transform="translate(500,10)">
+          <rect width="385" height="296" rx="12" fill="#FEF2F1" stroke="#FECDC9" stroke-width="1.5"/>
+          <text x="192" y="28" text-anchor="middle" fill="#C0392B" class="dg dg-title">CELULITE INFECIOSA</text>
+          <text x="192" y="44" text-anchor="middle" fill="#5A7278" class="dg dg-sub">Infeção bacteriana aguda — condição médica urgente</text>
+          <path d="M30,62 Q70,56 110,62 Q150,68 190,62 Q230,56 270,62 Q310,68 352,62 L352,90 L30,90 Z" fill="#FFAAAA" stroke="#E53E3E" stroke-width="1.5"/>
+          <text x="192" y="80" text-anchor="middle" fill="#7B1111" class="dg dg-label">Pele vermelha, quente, inchada</text>
+          <rect x="30" y="90" width="322" height="52" fill="#FF9999" stroke="#E53E3E" stroke-width="1" opacity=".75"/>
+          <circle cx="55" cy="108" r="5" fill="#C0392B"/><circle cx="78" cy="116" r="4" fill="#C0392B"/><circle cx="102" cy="106" r="5" fill="#C0392B"/><circle cx="130" cy="115" r="5" fill="#C0392B"/><circle cx="158" cy="107" r="4" fill="#C0392B"/><circle cx="182" cy="118" r="5" fill="#C0392B"/><circle cx="210" cy="106" r="4" fill="#C0392B"/><circle cx="238" cy="115" r="5" fill="#C0392B"/><circle cx="264" cy="108" r="5" fill="#C0392B"/><circle cx="290" cy="116" r="4" fill="#C0392B"/><circle cx="316" cy="108" r="5" fill="#C0392B"/>
+          <text x="192" y="135" text-anchor="middle" fill="#7B1111" class="dg dg-note" font-weight="600">Bactérias ● Edema ● Inflamação intensa</text>
+          <polygon points="180,62 192,85 204,62" fill="#C0392B" opacity=".65"/>
+          <text x="192" y="58" text-anchor="middle" fill="#C0392B" class="dg dg-note" font-weight="700">↓ Entrada bacteriana</text>
+          <ellipse cx="100" cy="182" rx="46" ry="15" fill="#FFCCCC" stroke="#E53E3E" stroke-width="1.5"/>
+          <text x="100" y="186" text-anchor="middle" fill="#7B1111" class="dg dg-note">Vasos inflamados</text>
+          <ellipse cx="268" cy="182" rx="50" ry="15" fill="#FFCCCC" stroke="#E53E3E" stroke-width="1.5"/>
+          <text x="268" y="186" text-anchor="middle" fill="#7B1111" class="dg dg-note">e comprometidos</text>
+          <rect x="30" y="206" width="322" height="34" fill="#FFE5E5" stroke="#FECDC9" stroke-width="1" rx="4"/>
+          <text x="192" y="227" text-anchor="middle" fill="#7B1111" class="dg dg-sub">Propagação a tecidos profundos</text>
+          <rect x="30" y="250" width="322" height="36" rx="12" fill="#C0392B"/>
+          <text x="192" y="267" text-anchor="middle" fill="white" class="dg dg-badge">⚠ Febre · Dor intensa · Urgência</text>
+          <text x="192" y="281" text-anchor="middle" fill="rgba(255,255,255,0.8)" class="dg dg-note">Necessita de avaliação médica imediata</text>
+        </g>
+      </svg>
+      <div class="diagram-caption">Corte transversal esquemático. À esquerda, a celulite cosmética: gordura empurra a pele para cima, septos puxam para baixo — criando o relevo visível. À direita, a celulite infeciosa: bactérias invadem os tecidos provocando inflamação grave que requer atenção médica urgente.</div>
+    </div>
+
+    <div class="compare-grid fade fd2">
+      <div class="ccard cosm">
+        <span class="ctag">Condição Estética</span>
+        <h3>Celulite Cosmética</h3>
+        <p>Também chamada <strong>lipodistrofia ginoide</strong>, é a famosa "casca de laranja" — aquele aspeto irregular que aparece principalmente nas coxas, nádegas e abdómen. <strong>Não é uma doença.</strong> É uma alteração estrutural da gordura subcutânea.</p>
+        <p style="margin-top:.7rem">A gordura fica organizada em células separadas por cordões fibrosos. Quando essas células de gordura aumentam ou as fibras enfraquecem, a gordura empurra a pele para cima — criando o aspeto irregular.</p>
+        <ul class="clist">
+          <li>Zonas mais afetadas: coxas, nádegas, ancas e barriga</li>
+          <li>Aparece geralmente entre os 20 e os 30 anos</li>
+          <li>Afeta cerca de 8 a 9 em cada 10 mulheres</li>
+          <li>Sem dor intensa, febre ou mal-estar geral</li>
+          <li>Abordagem com cosméticos, massagens e procedimentos</li>
+        </ul>
+      </div>
+      <div class="ccard inf">
+        <span class="ctag">Infeção Bacteriana Aguda</span>
+        <h3>Celulite Infeciosa</h3>
+        <p>Em inglês <em>cellulitis</em> — uma <strong>infeção bacteriana grave da pele e do tecido por baixo</strong>. Não tem nada a ver com a celulite cosmética apesar de partilhar o nome. Requer avaliação médica urgente.</p>
+        <p style="margin-top:.7rem">Bactérias (<em>Streptococcus</em> ou <em>Staphylococcus</em>) entram pela pele através de feridas ou cortes. A resposta do organismo causa inflamação intensa nos tecidos infetados.</p>
+        <ul class="clist">
+          <li>Pele muito vermelha, quente, inchada e dolorosa</li>
+          <li>Pode causar febre e mal-estar geral</li>
+          <li>Em casos graves pode ser perigoso para a vida</li>
+          <li>Requer antibióticos — nunca cosméticos</li>
+          <li>Pode necessitar de internamento hospitalar</li>
+        </ul>
+        <div class="warn-box">
+          <span>⚠️</span>
+          <span>Se tiver dor intensa, febre, pele muito vermelha e quente ou sentir mal-estar geral, vá às urgências de imediato — não aplique cremes.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FISIOPATOLOGIA ===================== -->
+<section id="fisio">
+  <div class="container">
+    <span class="sec-label">Como Surge</span>
+    <h2 class="sec-title">O que acontece sob a sua pele</h2>
+    <p class="sec-sub">A celulite não aparece de repente — é o resultado de vários processos acumulados ao longo do tempo. Compreender estes mecanismos ajuda a perceber porque é que algumas abordagens funcionam e outras não.</p>
+
+    <div class="diagram-wrap fade">
+      <div class="diagram-title">Anatomia completa da pele</div>
+      <svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>.sk{font-family:'Plus Jakarta Sans',Arial,sans-serif;}.sk-title{font-size:13px;font-weight:700;}.sk-lbl{font-size:9.5px;font-weight:600;}.sk-note{font-size:8.5px;}.sk-tiny{font-size:7.5px;}</style>
+          <linearGradient id="lgSC" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FDE8CB"/><stop offset="100%" stop-color="#F5C9A0"/></linearGradient>
+          <linearGradient id="lgEpi" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F5C9A0"/><stop offset="100%" stop-color="#EBB07A"/></linearGradient>
+          <linearGradient id="lgDerm" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FDDBB0"/><stop offset="100%" stop-color="#F8C885"/></linearGradient>
+          <linearGradient id="lgSubQ" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F9D8A8"/><stop offset="100%" stop-color="#F4C070"/></linearGradient>
+          <linearGradient id="lgDeepF" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#EFC870"/><stop offset="100%" stop-color="#E0A840"/></linearGradient>
+          <linearGradient id="lgMuscle" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F4A0A0"/><stop offset="100%" stop-color="#E87070"/></linearGradient>
+          <filter id="vblur"><feGaussianBlur stdDeviation="1.5"/></filter>
+        </defs>
+        <rect x="160" y="40" width="480" height="25" fill="url(#lgSC)" stroke="#DCA870" stroke-width="1"/>
+        <line x1="160" y1="46" x2="640" y2="46" stroke="rgba(180,110,50,0.2)" stroke-width="0.6"/>
+        <line x1="160" y1="52" x2="640" y2="52" stroke="rgba(180,110,50,0.2)" stroke-width="0.6"/>
+        <rect x="160" y="65" width="480" height="35" fill="url(#lgEpi)" stroke="#D8A060" stroke-width="1"/>
+        <ellipse cx="200" cy="82" rx="9" ry="8" fill="#D47840" stroke="#B05820" stroke-width="1"/>
+        <text x="200" y="86" text-anchor="middle" fill="white" class="sk sk-tiny">K</text>
+        <ellipse cx="230" cy="78" rx="7" ry="7" fill="#6B3A2A" stroke="#4A2015" stroke-width="1"/>
+        <text x="230" y="82" text-anchor="middle" fill="white" class="sk sk-tiny">M</text>
+        <ellipse cx="260" cy="84" rx="9" ry="8" fill="#D47840" stroke="#B05820" stroke-width="1"/>
+        <text x="260" y="88" text-anchor="middle" fill="white" class="sk sk-tiny">K</text>
+        <ellipse cx="290" cy="78" rx="7" ry="7" fill="#6B3A2A" stroke="#4A2015" stroke-width="1"/>
+        <text x="290" y="82" text-anchor="middle" fill="white" class="sk sk-tiny">M</text>
+        <text x="420" y="78" fill="#8B5E3C" class="sk sk-tiny">K=Queratinócito</text>
+        <text x="420" y="91" fill="#8B5E3C" class="sk sk-tiny">M=Melanócito</text>
+        <rect x="160" y="100" width="480" height="75" fill="url(#lgDerm)" stroke="#D0A050" stroke-width="1"/>
+        <path d="M165,115 Q200,110 235,118 Q270,126 305,118 Q340,110 375,118 Q410,126 445,118 Q480,110 515,118 Q550,126 585,118 Q615,112 635,116" fill="none" stroke="rgba(180,120,50,0.45)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M165,128 Q200,122 235,130 Q270,138 305,130 Q340,122 375,130 Q410,138 445,130 Q480,122 515,130 Q550,138 585,130 Q615,124 635,128" fill="none" stroke="rgba(180,120,50,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M165,142 Q200,136 235,144 Q270,152 305,144 Q340,136 375,144 Q410,152 445,144 Q480,136 515,144 Q550,152 585,144 Q615,138 635,142" fill="none" stroke="rgba(180,120,50,0.38)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M165,156 Q200,150 235,158 Q270,164 305,158 Q340,150 375,158 Q410,164 445,158 Q480,150 515,158 Q550,164 585,158 Q615,152 635,156" fill="none" stroke="rgba(180,120,50,0.35)" stroke-width="1.3" stroke-linecap="round"/>
+        <rect x="160" y="175" width="480" height="45" fill="#F5C880" stroke="#C89040" stroke-width="1"/>
+        <path d="M165,188 Q210,183 255,190 Q300,197 345,190 Q390,183 435,190 Q480,197 525,190 Q570,183 615,190 Q625,193 635,190" fill="none" stroke="rgba(160,100,30,0.5)" stroke-width="2.2" stroke-linecap="round"/>
+        <ellipse cx="300" cy="200" rx="22" ry="9" fill="#F08080" stroke="#C04040" stroke-width="1.5"/>
+        <text x="300" y="204" text-anchor="middle" fill="#801010" class="sk sk-tiny">artéria</text>
+        <ellipse cx="520" cy="198" rx="22" ry="9" fill="#8080E0" stroke="#4040B0" stroke-width="1.5"/>
+        <text x="520" y="202" text-anchor="middle" fill="#202080" class="sk sk-tiny">veia</text>
+        <line x1="190" y1="175" x2="186" y2="220" stroke="#B07030" stroke-width="2.5"/>
+        <line x1="370" y1="175" x2="366" y2="220" stroke="#B07030" stroke-width="2.5"/>
+        <line x1="600" y1="175" x2="596" y2="220" stroke="#B07030" stroke-width="2"/>
+        <rect x="160" y="220" width="480" height="120" fill="url(#lgSubQ)" stroke="#C09040" stroke-width="1"/>
+        <ellipse cx="210" cy="272" rx="38" ry="32" fill="#F0B860" stroke="#D09030" stroke-width="1.5"/>
+        <ellipse cx="310" cy="266" rx="42" ry="35" fill="#F0B860" stroke="#D09030" stroke-width="1.5"/>
+        <text x="310" y="272" text-anchor="middle" fill="#8B5E10" class="sk sk-tiny" font-weight="700">Lóbulo adiposo</text>
+        <ellipse cx="420" cy="270" rx="40" ry="33" fill="#F0B860" stroke="#D09030" stroke-width="1.5"/>
+        <ellipse cx="550" cy="268" rx="38" ry="30" fill="#F0B860" stroke="#D09030" stroke-width="1.5"/>
+        <line x1="254" y1="220" x2="258" y2="340" stroke="#A07828" stroke-width="2.5"/>
+        <line x1="362" y1="220" x2="358" y2="340" stroke="#A07828" stroke-width="2.5"/>
+        <line x1="470" y1="220" x2="466" y2="340" stroke="#A07828" stroke-width="2.5"/>
+        <path d="M168,312 Q240,306 312,312 Q384,318 456,312 Q528,306 600,312 Q622,314 635,312" fill="none" stroke="#80C880" stroke-width="2" stroke-dasharray="6,3"/>
+        <rect x="160" y="340" width="480" height="38" fill="url(#lgDeepF)" stroke="#B08020" stroke-width="1"/>
+        <text x="400" y="362" text-anchor="middle" fill="#705010" class="sk sk-note" font-weight="600">Fáscia muscular superficial</text>
+        <rect x="160" y="378" width="480" height="58" fill="url(#lgMuscle)" stroke="#C04040" stroke-width="1"/>
+        <text x="400" y="415" text-anchor="middle" fill="#801010" class="sk sk-lbl">Músculo Esquelético</text>
+        <line x1="646" y1="220" x2="660" y2="220" stroke="#906010" stroke-width="1.2"/>
+        <line x1="646" y1="340" x2="660" y2="340" stroke="#906010" stroke-width="1.2"/>
+        <line x1="656" y1="220" x2="656" y2="340" stroke="#906010" stroke-width="1.2"/>
+        <line x1="656" y1="280" x2="668" y2="280" stroke="#906010" stroke-width="1.2"/>
+        <text x="672" y="274" fill="#5A3A1A" class="sk sk-lbl">Hipoderme</text>
+        <text x="672" y="286" fill="#7A5A3A" class="sk sk-note">(gordura subcutânea)</text>
+        <text x="672" y="297" fill="#C05010" class="sk sk-note" font-weight="600">← ZONA DA CELULITE</text>
+        <line x1="646" y1="100" x2="660" y2="100" stroke="#A07828" stroke-width="1.2"/>
+        <line x1="646" y1="175" x2="660" y2="175" stroke="#A07828" stroke-width="1.2"/>
+        <line x1="656" y1="100" x2="656" y2="175" stroke="#A07828" stroke-width="1.2"/>
+        <line x1="656" y1="137" x2="668" y2="137" stroke="#A07828" stroke-width="1.2"/>
+        <text x="672" y="130" fill="#5A3A1A" class="sk sk-lbl">Derme papilar</text>
+        <text x="672" y="142" fill="#7A5A3A" class="sk sk-note">(colagénio tipo I+III)</text>
+        <text x="128" y="268" text-anchor="end" fill="#C05010" class="sk sk-note" font-weight="700">⚠ Celulite</text>
+        <text x="128" y="279" text-anchor="end" fill="#C05010" class="sk sk-note">ocorre aqui</text>
+        <line x1="130" y1="273" x2="165" y2="265" stroke="#C05010" stroke-width="1.2" stroke-dasharray="3,2"/>
+        <text x="400" y="22" text-anchor="middle" fill="#0A2A2E" class="sk" font-size="13" font-weight="700">CORTE TRANSVERSAL DA PELE HUMANA — TODAS AS CAMADAS</text>
+      </svg>
+      <div class="diagram-caption">Corte transversal detalhado da pele humana mostrando todas as camadas desde o estrato córneo até ao músculo. A celulite ocorre principalmente na hipoderme, onde os lóbulos adiposos se hipertrofiam e pressionam para cima contra a derme, enquanto os septos fibrosos ancorados à fáscia puxam para baixo.</div>
+    </div>
+
+    <div class="diagram-wrap fade fd2">
+      <div class="diagram-title">Estrutura da pele: normal vs. com celulite</div>
+      <svg viewBox="0 0 900 310" xmlns="http://www.w3.org/2000/svg">
+        <defs><style>.cv{font-family:'Plus Jakarta Sans',Arial,sans-serif;}</style></defs>
+        <g transform="translate(18,12)">
+          <rect width="380" height="278" rx="12" fill="#f7fffd" stroke="#D4E5E2" stroke-width="1.5"/>
+          <text x="190" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#00A896" class="cv">PELE NORMAL</text>
+          <rect x="26" y="40" width="328" height="24" rx="4" fill="#F5C9A0" stroke="#E8A870" stroke-width="1"/>
+          <text x="190" y="56" text-anchor="middle" font-size="9" fill="#7C5A2E" font-weight="600" class="cv">Epiderme — superfície lisa</text>
+          <rect x="26" y="64" width="328" height="40" fill="#FDDBB0" stroke="#E8A870" stroke-width="1"/>
+          <text x="190" y="88" text-anchor="middle" font-size="9" fill="#7C5A2E" class="cv">Derme — fibras de colagénio resistentes e cruzadas</text>
+          <ellipse cx="75" cy="145" rx="28" ry="22" fill="#FCDB9B" stroke="#E8A870" stroke-width="1"/>
+          <ellipse cx="148" cy="142" rx="28" ry="22" fill="#FCDB9B" stroke="#E8A870" stroke-width="1"/>
+          <ellipse cx="222" cy="145" rx="28" ry="22" fill="#FCDB9B" stroke="#E8A870" stroke-width="1"/>
+          <ellipse cx="294" cy="142" rx="26" ry="20" fill="#FCDB9B" stroke="#E8A870" stroke-width="1"/>
+          <line x1="102" y1="104" x2="118" y2="164" stroke="#C49A5B" stroke-width="1.8"/>
+          <line x1="174" y1="104" x2="174" y2="162" stroke="#C49A5B" stroke-width="1.8"/>
+          <line x1="250" y1="104" x2="246" y2="164" stroke="#C49A5B" stroke-width="1.8"/>
+          <text x="190" y="170" text-anchor="middle" font-size="8.5" fill="#7C5A2E" class="cv">Septos cruzados → gordura bem contida</text>
+          <ellipse cx="94" cy="194" rx="19" ry="7" fill="none" stroke="#E74C3C" stroke-width="1.5"/>
+          <ellipse cx="190" cy="197" rx="19" ry="7" fill="none" stroke="#E74C3C" stroke-width="1.5"/>
+          <ellipse cx="282" cy="194" rx="19" ry="7" fill="none" stroke="#E74C3C" stroke-width="1.5"/>
+          <text x="190" y="216" text-anchor="middle" font-size="8.5" fill="#7C5A2E" class="cv">Circulação sanguínea fluida</text>
+          <rect x="26" y="222" width="328" height="28" fill="#FFF0DC" stroke="#E8A870" stroke-width="1" rx="4"/>
+          <text x="190" y="240" text-anchor="middle" font-size="9" fill="#7C5A2E" class="cv">Camada profunda de gordura</text>
+          <rect x="95" y="256" width="190" height="18" rx="9" fill="#00A896" opacity=".9"/>
+          <text x="190" y="268" text-anchor="middle" font-size="9" fill="white" font-weight="700" class="cv">Pele lisa e firme</text>
+        </g>
+        <text x="443" y="160" text-anchor="middle" font-size="24" font-weight="700" fill="#D4E5E2" font-family="Georgia,serif">→</text>
+        <g transform="translate(488,12)">
+          <rect width="380" height="278" rx="12" fill="#FFFBF5" stroke="#E8A870" stroke-width="1.5"/>
+          <text x="190" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#E07B3F" class="cv">COM CELULITE</text>
+          <path d="M26,40 Q52,30 78,40 Q104,50 130,40 Q156,30 182,40 Q208,50 234,40 Q260,30 286,40 Q312,50 338,40 L354,43 L354,64 L26,64 Z" fill="#F5C9A0" stroke="#E8A870" stroke-width="1.5"/>
+          <text x="190" y="58" text-anchor="middle" font-size="9" fill="#7C5A2E" font-weight="600" class="cv">Epiderme irregular → "casca de laranja"</text>
+          <rect x="26" y="64" width="328" height="26" fill="#FDDBB0" stroke="#E8A870" stroke-width="1" opacity=".8"/>
+          <text x="190" y="81" text-anchor="middle" font-size="9" fill="#7C5A2E" class="cv">Derme mais fina · colagénio degradado</text>
+          <ellipse cx="75" cy="138" rx="38" ry="30" fill="#F4A261" stroke="#E07B3F" stroke-width="1.5"/>
+          <ellipse cx="167" cy="142" rx="40" ry="33" fill="#F4A261" stroke="#E07B3F" stroke-width="1.5"/>
+          <ellipse cx="262" cy="138" rx="38" ry="30" fill="#F4A261" stroke="#E07B3F" stroke-width="1.5"/>
+          <text x="167" y="143" text-anchor="middle" font-size="8" fill="#7C3E10" font-weight="700" class="cv">Gordura ↑↑</text>
+          <line x1="114" y1="90" x2="114" y2="166" stroke="#9B4A1B" stroke-width="2.5"/>
+          <line x1="208" y1="90" x2="208" y2="172" stroke="#9B4A1B" stroke-width="2.5"/>
+          <polygon points="109,162 114,172 119,162" fill="#9B4A1B"/>
+          <polygon points="203,168 208,178 213,168" fill="#9B4A1B"/>
+          <text x="167" y="192" text-anchor="middle" font-size="8.5" fill="#9B4A1B" class="cv">Septos verticais puxam para baixo ↓</text>
+          <ellipse cx="84" cy="208" rx="22" ry="7" fill="#FFCCCC" stroke="#E53E3E" stroke-width="1.5"/>
+          <text x="84" y="212" text-anchor="middle" font-size="7" fill="#C0392B" class="cv">bloqueado</text>
+          <ellipse cx="268" cy="208" rx="22" ry="7" fill="#FFCCCC" stroke="#E53E3E" stroke-width="1.5"/>
+          <text x="268" y="212" text-anchor="middle" font-size="7" fill="#C0392B" class="cv">bloqueado</text>
+          <text x="167" y="228" text-anchor="middle" font-size="8.5" fill="#C0392B" class="cv">Circulação comprometida → edema 💧</text>
+          <rect x="26" y="234" width="328" height="24" fill="#FFF0DC" stroke="#E8A870" stroke-width="1" rx="4"/>
+          <text x="190" y="250" text-anchor="middle" font-size="9" fill="#7C5A2E" class="cv">Excesso de gordura subcutânea</text>
+          <rect x="90" y="262" width="200" height="18" rx="9" fill="#E07B3F" opacity=".9"/>
+          <text x="190" y="274" text-anchor="middle" font-size="9" fill="white" font-weight="700" class="cv">Aspeto "casca de laranja" visível</text>
+        </g>
+      </svg>
+      <div class="diagram-legend">
+        <div class="dl-item"><div class="dl-swatch" style="background:#F5C9A0"></div>Epiderme</div>
+        <div class="dl-item"><div class="dl-swatch" style="background:#FDDBB0"></div>Derme (colagénio)</div>
+        <div class="dl-item"><div class="dl-swatch" style="background:#F4A261"></div>Lóbulos de gordura</div>
+        <div class="dl-item"><div class="dl-swatch" style="background:#9B4A1B;border-radius:50%"></div>Septos fibrosos</div>
+        <div class="dl-item"><div class="dl-swatch" style="background:#E53E3E;border-radius:50%"></div>Vasos sanguíneos</div>
+      </div>
+      <div class="diagram-caption">Na pele normal (esquerda), os lóbulos de gordura estão contidos e a circulação flui livremente. Com celulite (direita), os lóbulos crescem e empurram a pele para cima, os septos verticais puxam para baixo criando irregularidades cutâenas, e a circulação fica comprometida — alimentando um ciclo vicioso.</div>
+    </div>
+
+    <div class="fisio-grid">
+      <div class="fisio-text fade">
+        <h3>A batalha de forças opostas sob a pele</h3>
+        <p>Imagine a gordura subcutânea organizada em pequenos "sacos" separados por cordões de fibras (os septos). Numa pele saudável, estes sacos, células de gordura, são pequenos e os cordões cruzam-se em várias direções — mantendo tudo no lugar.</p>
+        <p>Com a celulite, as células de gordura aumentam e empurram a pele para cima. Ao mesmo tempo, os cordões fibrosos (dispostos mais na vertical nas mulheres) puxam a pele para baixo em pontos específicos — criando as irregularidades cutâneas características.</p>
+        <p>O <strong>papel dos estrogénios</strong> é central: estimulam a retenção de água, enfraquecem o colagénio e aumentam os depósitos de gordura. Por isso a celulite é quase exclusivamente feminina, e agrava com a gravidez, contracetivos hormonais ou menopausa.</p>
+        <p>A inflamação persistente ao longo dos anos endurece os septos tornando-os fibrosos — o que explica porque a celulite piora com a idade.</p>
+        <h4 style="margin-top:1.5rem;margin-bottom:.75rem;font-size:1rem">O que aumenta o risco</h4>
+        <div class="chips">
+          <span class="chip">Ser mulher</span><span class="chip">Herança genética</span>
+          <span class="chip">Excesso de peso</span><span class="chip">Envelhecimento</span>
+          <span class="chip">Vida sedentária</span><span class="chip">Alimentação hipercalórica</span>
+          <span class="chip">Gravidez / estrogénios</span><span class="chip">Tabagismo</span>
+          <span class="chip">Álcool em excesso</span><span class="chip">Stress crónico</span>
+          <span class="chip">Roupa muito apertada</span><span class="chip">Má circulação venosa</span>
+        </div>
+      </div>
+
+      <div class="fade fd2">
+        <div class="diagram-wrap" style="margin:0">
+          <div class="diagram-title">Os 5 passos que formam a celulite</div>
+          <svg viewBox="0 0 340 410" xmlns="http://www.w3.org/2000/svg">
+            <defs><style>.sp{font-family:'Plus Jakarta Sans',Arial,sans-serif;}</style></defs>
+            <line x1="47" y1="38" x2="47" y2="408" stroke="#D4E5E2" stroke-width="2" stroke-dasharray="5,4"/>
+            <circle cx="47" cy="38" r="20" fill="#00A896"/>
+            <text x="47" y="43" text-anchor="middle" font-size="13" font-weight="700" fill="white" class="sp">1</text>
+            <rect x="75" y="20" width="188" height="38" rx="8" fill="#EAF4F2" stroke="#D4E5E2" stroke-width="1"/>
+            <text x="169" y="35" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0A2A2E" class="sp">Células de gordura</text>
+            <text x="169" y="50" text-anchor="middle" font-size="8.5" fill="#5A7278" class="sp">aumentam de tamanho</text>
+            <polygon points="41,66 47,78 53,66" fill="#00A896" opacity=".5"/>
+            <circle cx="47" cy="96" r="20" fill="#00A896"/>
+            <text x="47" y="101" text-anchor="middle" font-size="13" font-weight="700" fill="white" class="sp">2</text>
+            <rect x="75" y="78" width="188" height="38" rx="8" fill="#EAF4F2" stroke="#D4E5E2" stroke-width="1"/>
+            <text x="169" y="93" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0A2A2E" class="sp">Vasos sanguíneos</text>
+            <text x="169" y="108" text-anchor="middle" font-size="8.5" fill="#5A7278" class="sp">ficam mais permeáveis</text>
+            <polygon points="41,124 47,136 53,124" fill="#00A896" opacity=".5"/>
+            <circle cx="47" cy="154" r="20" fill="#3B82F6"/>
+            <text x="47" y="159" text-anchor="middle" font-size="13" font-weight="700" fill="white" class="sp">3</text>
+            <rect x="75" y="136" width="188" height="38" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+            <text x="169" y="151" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0A2A2E" class="sp">Inchaço e falta de O₂</text>
+            <text x="169" y="166" text-anchor="middle" font-size="8.5" fill="#5A7278" class="sp">hipóxia + edema</text>
+            <polygon points="41,182 47,194 53,182" fill="#3B82F6" opacity=".5"/>
+            <circle cx="47" cy="212" r="20" fill="#F59E0B"/>
+            <text x="47" y="217" text-anchor="middle" font-size="13" font-weight="700" fill="white" class="sp">4</text>
+            <rect x="75" y="194" width="188" height="38" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/>
+            <text x="169" y="209" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0A2A2E" class="sp">Enzimas destroem</text>
+            <text x="169" y="224" text-anchor="middle" font-size="8.5" fill="#5A7278" class="sp">o colagénio da pele</text>
+            <polygon points="41,240 47,252 53,240" fill="#F59E0B" opacity=".5"/>
+            <circle cx="47" cy="270" r="20" fill="#C0392B"/>
+            <text x="47" y="275" text-anchor="middle" font-size="13" font-weight="700" fill="white" class="sp">5</text>
+            <rect x="75" y="252" width="188" height="38" rx="8" fill="#FEF2F1" stroke="#FECDC9" stroke-width="1"/>
+            <text x="169" y="267" text-anchor="middle" font-size="9.5" font-weight="700" fill="#C0392B" class="sp">Fibrosclerose</text>
+            <text x="169" y="282" text-anchor="middle" font-size="8.5" fill="#5A7278" class="sp">septos endurecem e retraem</text>
+            <rect x="14" y="310" width="312" height="52" rx="8" fill="#FEF2F1" stroke="#FECDC9" stroke-width="1.5"/>
+            <text x="170" y="326" text-anchor="middle" font-size="9" fill="#C0392B" font-weight="700" class="sp">RESULTADO:irregularidades cutâneas </text>
+            <text x="170" y="340" text-anchor="middle" font-size="8" fill="#7B1111" class="sp">Gordura empurra ↑  ·  Septos puxam ↓</text>
+            <text x="170" y="354" text-anchor="middle" font-size="8" fill="#7B1111" class="sp">Circulação comprometida · Pele mais fina</text>
+          </svg>
+          <div class="diagram-caption">Os 5 passos alimentam-se mutuamente: gordura acumulada comprime vasos → edema → enzimas destrutivas → septos endurecem → comprimem mais os vasos. Um ciclo vicioso que as diferentes abordagens tentam interromper.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABORDAGENS ===================== -->
+<section id="tratamentos">
+  <div class="container">
+    <span class="sec-label">O que funciona</span>
+    <h2 class="sec-title">Abordagens por Nível de Invasão</h2>
+    <p class="sec-sub">Cada abordagem age sobre pontos diferentes do ciclo vicioso e envolve um nível distinto de intervenção. Combiná-las costuma dar melhores resultados do que usar apenas uma. Nenhuma elimina a celulite para sempre — mas algumas reduzem-na de forma bastante visível.</p>
+
+    <!-- TIER 1: Autónomo -->
+    <div class="invasion-tier fade">
+      <div class="tier-header">
+        <span class="tier-badge self">🟢 Nível 1 — Autónomo / Sem prescrição</span>
+        <span class="tier-desc">Pode ser usado em casa, sem supervisão profissional. Seguro, acessível e indicado como primeira linha.</span>
+      </div>
+      <div class="treat-grid">
+        <div class="tcard">
+          <span class="tcat">Tópico · 1.ª Linha</span>
+          <span class="ticon">🧴</span>
+          <h4>Cosméticos Tópicos</h4>
+          <p>Géis, cremes, óleos e séruns com ingredientes cientificamente validados (cafeína, retinol, escina). Estimulam a circulação local, ativam a lipólise e fortalecem a pele. Eficácia demonstrada em estudos controlados quando usados de forma consistente.</p>
+        </div>
+        <div class="tcard">
+          <span class="tcat">Oral · Complementar</span>
+          <span class="ticon">💊</span>
+          <h4>Suplementos Orais</h4>
+          <p>Extratos de plantas, óleos ou colagénio hidrolisado tomados pela boca. Atuam de dentro para fora — melhoram o estado geral da pele e completam a ação dos produtos tópicos.</p>
+        </div>
+        <div class="tcard">
+          <span class="tcat">Mecânico</span>
+          <span class="ticon">👐</span>
+          <h4>Massagem Manual</h4>
+          <p>Estimula a drenagem de líquidos e melhora a circulação — e potencia muito a absorção dos cosméticos quando aplicada em simultâneo. Pode ser feita em casa com técnica adequada.</p>
+        </div>
+        <div class="tcard">
+          <span class="tcat">Estilo de Vida</span>
+          <span class="ticon">🏃</span>
+          <h4>Exercício e Alimentação</h4>
+          <p>O exercício cardiovascular e de força melhora a circulação, tónus muscular e reduz os depósitos de gordura. Uma dieta pobre em sódio e açúcares contraria a retenção de líquidos e a hipertrofia dos adipócitos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2: Profissional Não Invasivo -->
+    <div class="invasion-tier fade fd2">
+      <div class="tier-header">
+        <span class="tier-badge prof">🔵 Nível 2 — Profissional Não Invasivo</span>
+        <span class="tier-desc">Realizado em clínicas por profissionais qualificados. Sem agulhas nem incisões. Geralmente sem período de recuperação significativo.</span>
+      </div>
+      <div class="treat-grid">
+        <div class="tcard prof-card">
+          <span class="tcat prof-cat">Clínica · Mecânico</span>
+          <span class="ticon">💆</span>
+          <h4> Drenagem Mecânica</h4>
+          <p>Aparelhos de sucção e rolo que simulam a massagem manual com intensidade controlada. Estimulam a drenagem linfática profunda e a microcirculação.</p>
+        </div>
+        <div class="tcard prof-card">
+          <span class="tcat prof-cat">Clínica · Calor</span>
+          <span class="ticon">🔥</span>
+          <h4>Radiofrequência</h4>
+          <p>Uma corrente elétrica aquece os tecidos em profundidade, estimulando a renovação do colagénio. A pele vai ficando progressivamente mais firme ao longo das sessões. Sem cortes ou injeções.</p>
+        </div>
+        <div class="tcard prof-card">
+          <span class="tcat prof-cat">Clínica · Luz</span>
+          <span class="ticon">⚡</span>
+          <h4>Laser e Fototerapia</h4>
+          <p>Energia luminosa que penetra nas camadas mais profundas. O calor gerado remodela o colagénio e melhora a circulação local com precisão de profundidade regulável. Não invasivo.</p>
+        </div>
+        <div class="tcard prof-card">
+          <span class="tcat prof-cat">Clínica · Acústico</span>
+          <span class="ticon">🔊⚡</span>
+          <h4>Ondas de Choque Acústicas</h4>
+          <p>Ondas sonoras de alta energia que estimulam a circulação, produção de colagénio e drenagem do edema.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3: Profissional Invasivo / Médico -->
+    <div class="invasion-tier fade fd3">
+      <div class="tier-header">
+        <span class="tier-badge med">🔴 Nível 3 — Profissional Invasivo / Médico</span>
+        <span class="tier-desc">Requer médico especialista. Envolve agulhas, injeções ou incisões. Indicado para celulite severa (grau 2–3) após avaliação médica individual.</span>
+      </div>
+      <div class="treat-grid">
+        <div class="tcard med-card">
+          <span class="tcat med-cat">Médico · Injetável</span>
+          <span class="ticon">💉</span>
+          <h4>Bioestimuladores Injetáveis</h4>
+          <p>Substâncias injetadas sob a pele que estimulam a produção de novo colagénio e elastina — tornando a pele progressivamente mais espessa, firme e elástica. Requer avaliação e prescrição médica prévia.</p>
+        </div>
+        <div class="tcard med-card">
+          <span class="tcat med-cat">Médico · Cirúrgico Mínimo</span>
+          <span class="ticon">✂️</span>
+          <h4>Subcisão</h4>
+          <p>Corta os cordões fibrosos que criam as irregularidades cutâneas. Pode ser feita com agulha, laser, enzimas (colagenase — injetável) ou vácuo. A abordagem mais direta para depressões localizadas. Realizada apenas por médico.</p>
+        </div>
+        <div class="tcard med-card">
+          <span class="tcat med-cat">Médico · Injetável</span>
+          <span class="ticon">🧬</span>
+          <h4>Mesoterapia</h4>
+          <p>Microinjeções de ativos (fosfodiesterase, cafeína, carnitina) diretamente no tecido subcutâneo. Concentrações muito superiores às dos tópicos, com ação local precisa. Apenas em clínicas médicas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROTULAGEM ===================== -->
+<section id="rotulagem">
+  <div class="container">
+    <span class="sec-label">Ler Rótulos</span>
+    <h2 class="sec-title">Como ler um rótulo de cosmético</h2>
+    <p class="sec-sub">A lista de ingredientes pode parecer um código cifrado — mas há regras simples que o ajudam a perceber o que está a comprar e a distinguir um produto com base científica do puro marketing.</p>
+    <div class="inci-box fade">
+      <h3 style="margin-bottom:1.2rem">A Lista INCI: o código que todos podem aprender a ler</h3>
+      <div class="inci-rule">
+        <div class="inci-icon">①</div>
+        <div class="inci-text">
+          <h5>Os primeiros ingredientes são os mais abundantes</h5>
+          <p>Os ingredientes aparecem por ordem decrescente de quantidade. Os primeiros (normalmente <em>Aqua</em> e álcool) são os mais presentes. Os ativos aparecem mais abaixo, mas isso não significa que são ineficazes — muitos funcionam em quantidades muito pequenas.</p>
+        </div>
+      </div>
+      <div class="inci-rule">
+        <div class="inci-icon">②</div>
+        <div class="inci-text">
+          <h5>Os nomes são iguais em todo o mundo</h5>
+          <p>O sistema INCI garante que os ingredientes têm sempre o mesmo nome, seja num creme comprado em Lisboa ou em qualquer outra cidade Europeia. Ao aprender a reconhecer os ativos principais (cafeína, escina, retinol), passa a comparar produtos com confiança em qualquer idioma.</p>
+        </div>
+      </div>
+      <div class="inci-rule">
+        <div class="inci-icon">③</div>
+        <div class="inci-text">
+          <h5>Nem todos os ingredientes "atuam" sobre a celulite</h5>
+          <p>Muitos ingredientes servem apenas para dar textura, cheiro, cor ou estabilidade — são os excipientes. São necessários, mas não são os responsáveis pelos resultados. Saber quais são os ingredientes ativos é a chave para escolher bem.</p>
+        </div>
+      </div>
+      <div class="inci-formula">
+        <div class="inci-f-label">Exemplo de Lista INCI — Gel Anticelulítico Lido</div>
+        <div class="inci-f-text">AQUA, ALCOHOL DENAT., GLYCERIN, <span class="at">CAFFEINE</span>, <span class="at">CARNITINE</span>, LECITHIN, <span class="at">ESCIN</span>, <span class="at">RETINOL</span>, <span class="at">COLEUS FORSKOHLII ROOT EXTRACT</span>, <span class="at">RUSCUS ACULEATUS ROOT EXTRACT</span>, MENTHYL LACTATE, CARBOMER, PHENOXYETHANOL, ETHYLHEXYLGLYCERIN, PARFUM</div>
+        <p class="inci-f-note">Ingredientes destacados = ativos com efeito comprovado. Os restantes são excipientes.</p>
+      </div>
+    </div>
+    <div class="claims-grid fade fd2">
+      <div class="claim-box ok">
+        <div class="cb-title"><span>✓</span> O que um cosmético pode prometer com honestidade</div>
+        <ul class="cb-list">
+          <li>Reduz a <em>aparência</em> da celulite</li>
+          <li>Ajuda a drenar e a desinchar</li>
+          <li>Pele com aspeto mais firme e tonificado</li>
+          <li>Melhora a circulação na pele</li>
+          <li>Estimula a dissolução localizada de gordura</li>
+          <li>Promove a renovação do colagénio</li>
+        </ul>
+      </div>
+      <div class="claim-box bad">
+        <div class="cb-title"><span>✕</span> Promessas sem suporte científico sólido</div>
+        <ul class="cb-list">
+          <li>"Elimina a celulite definitivamente"</li>
+          <li>"Queima gordura localizada a 100%"</li>
+          <li>"Substitui exercício e dieta"</li>
+          <li>"Remove completamente a casca de laranja"</li>
+          <li>"Resultados visíveis em 24 a 48 horas"</li>
+        </ul>
+        <p class="cert-note">Atenção: selos como "testado dermatologicamente" ou "vegan" dizem algo sobre segurança — <strong>não garantem que o produto reduz a celulite.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMAS FARMACÊUTICAS ===================== -->
+<section id="formas">
+  <div class="container">
+    <span class="sec-label">Formas Farmacêuticas</span>
+    <h2 class="sec-title">Que forma de cosmético escolher?</h2>
+    <p class="sec-sub">Os cosméticos anticelulíticos existem em várias formas farmacêuticas — cada uma com características de textura, penetração e comodidade de uso distintas. A escolha certa depende do tipo de pele, da zona a aplicar e do protocolo de aplicação.</p>
+
+    <div class="formas-grid fade">
+
+      <div class="forma-card gel">
+        <span class="forma-icon">💧</span>
+        <span class="forma-tag">Gel</span>
+        <h4>Gel Aquoso</h4>
+        <p>A forma mais popular para anticelulíticos. Base de água gelificada (carbomer, hidroxietilcelulose) que proporciona uma sensação imediata de frescura. Ideal para massagem prolongada sem resíduo.</p>
+        <ul class="forma-pros">
+          <li>Absorção rápida — não deixa pele gordurosa</li>
+          <li>Textura fresca, ideal para uso após exercício ou no verão</li>
+          <li>Alta concentração de ativos hidrofílicos (cafeína, carnitina)</li>
+          <li>Facilita a massagem por deslizamento suave</li>
+        </ul>
+        <ul class="forma-cons">
+          <li>Menor oclusividade — pode secar rapidamente em peles secas</li>
+          <li>Retinol menos estável em bases aquosas (requere encapsulamento)</li>
+        </ul>
+        <span class="forma-ideal">✓ Ideal para: pele normal a oleosa · uso bidiário · verão</span>
+      </div>
+
+      <div class="forma-card creme">
+        <span class="forma-icon">🫙</span>
+        <span class="forma-tag">Creme</span>
+        <h4>Creme Emulsionado (O/A ou A/O)</h4>
+        <p>Emulsão de água e óleo que combina hidratação rica com absorção de ativos. A variante O/A (óleo em água) é mais ligeira; a A/O (água em óleo) é mais nutritiva e oclusiva.</p>
+        <ul class="forma-pros">
+          <li>Excelente veículo para retinol (estabilizado em fase lipídica)</li>
+          <li>Hidratação prolongada — ideal para peles secas ou maduras</li>
+          <li>Boa penetração de ativos lipofílicos (retinol, vitamina E)</li>
+          <li>Sensação confortável após aplicação</li>
+        </ul>
+        <ul class="forma-cons">
+          <li>Mais pesado que o gel — pode deixar resíduo</li>
+          <li>Absorção mais lenta; menos adequado para massagem intensa</li>
+        </ul>
+        <span class="forma-ideal">✓ Ideal para: pele seca a normal · uso noturno · outono/inverno</span>
+      </div>
+
+      <div class="forma-card oleo">
+        <span class="forma-icon">✨</span>
+        <span class="forma-tag">Óleo Seco</span>
+        <h4>Óleo Seco (Dry Oil)</h4>
+        <p>Óleos vegetais ou silicones ligeiros que se absorvem rapidamente sem deixar sensação gordurosa. Excelente veículo para compostos lipossolúveis e ideal para massagem de drenagem linfática.</p>
+        <ul class="forma-pros">
+          <li>Máxima penetração de ativos lipofílicos (retinol, cafeína encapsulada)</li>
+          <li>Excelente deslizamento — potencia a eficácia da massagem</li>
+          <li>Absorção seca e confortável</li>
+          <li>Alta biocompatibilidade com lípidos da pele</li>
+        </ul>
+        <ul class="forma-cons">
+          <li>Menos concentrado em ativos hidrofílicos</li>
+          <li>Pode ser menos adequado para peles muito oleosas</li>
+        </ul>
+        <span class="forma-ideal">✓ Ideal para: massagem corporal · pele seca · pós-duche</span>
+      </div>
+
+      <div class="forma-card serum">
+        <span class="forma-icon">🔬</span>
+        <span class="forma-tag">Sérum</span>
+        <h4>Sérum de Alta Concentração</h4>
+        <p>Formulação aquosa ou hidroalcoólica com altíssima concentração de ativos e peso molecular reduzido. Penetração mais profunda e ação mais rápida do que géis ou cremes convencionais.</p>
+        <ul class="forma-pros">
+          <li>Máxima concentração de ingredientes ativos por ml</li>
+          <li>Penetração mais profunda graças ao baixo peso molecular</li>
+          <li>Textura fluida — camada base ideal antes de creme</li>
+          <li>Formato eficiente (menos produto, mais ativos)</li>
+        </ul>
+        <ul class="forma-cons">
+          <li>Geralmente mais caro por unidade</li>
+          <li>Menos hidratante isolado — recomenda-se associar a creme</li>
+        </ul>
+        <span class="forma-ideal">✓ Ideal para: celulite grau 2–3 · pele mista · protocolo intensivo</span>
+      </div>
+
+      <div class="forma-card lotion">
+        <span class="forma-icon">💦</span>
+        <span class="forma-tag">Loção / Leite</span>
+        <h4>Loção Corporal</h4>
+        <p>Emulsão fluida com elevado teor em água. Textura muito ligeira que se espalha facilmente sobre grandes superfícies. Popular em formulações de uso quotidiano para zonas extensas como coxas e abdómen.</p>
+        <ul class="forma-pros">
+          <li>Cobertura rápida de grandes áreas corporais</li>
+          <li>Textura leve e não pegajosa</li>
+          <li>Fácil de integrar na rotina diária de hidratação</li>
+          <li>Bom veículo para ativos em doses de manutenção</li>
+        </ul>
+        <ul class="forma-cons">
+          <li>Concentração de ativos tipicamente mais baixa que sérum ou gel</li>
+          <li>Menor oclusividade — efeito mais superficial</li>
+        </ul>
+        <span class="forma-ideal">✓ Ideal para: manutenção após protocolo intensivo · uso diário geral</span>
+      </div>
+
+      <div class="forma-card espuma">
+        <span class="forma-icon">☁️</span>
+        <span class="forma-tag">Espuma / Mousse</span>
+        <h4>Espuma Corporal</h4>
+        <p>Emulsão pressurizada que liberta uma espuma leve e aerada. Textura invulgar que proporciona uma aplicação suave e sensação refrescante, com boa cobertura de superfície.</p>
+        <ul class="forma-pros">
+          <li>Textura muito leve e agradável ao toque</li>
+          <li>Espalhamento fácil e rápido em grandes áreas</li>
+          <li>Sensação refrescante imediata</li>
+          <li>Formato diferenciador e atrativo para uso regular</li>
+        </ul>
+        <ul class="forma-cons">
+          <li>Menos comum — concentração de ativos variável por marca</li>
+          <li>Embalagem pressurizada tem maior impacto ambiental</li>
+        </ul>
+        <span class="forma-ideal">✓ Ideal para: rotina matinal · peles sensíveis · pós-depilação</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FÓRMULA ===================== -->
+<section id="formula">
+  <div class="container">
+    <span class="sec-label">Ingredientes Ativos</span>
+    <h2 class="sec-title">Os 3 Pilares de um Bom Cosmético Anticelulítico</h2>
+    <p class="sec-sub">Um cosmético verdadeiramente eficaz precisa de atacar três frentes ao mesmo tempo: a gordura acumulada, a circulação comprometida e a pele que perdeu firmeza. Estudos como Bilodeau et al. (2014) e Ngamdokmai et al. (2021) confirmam este modelo tripilar de ação.</p>
+
+    <div class="diagram-wrap fade">
+      <div class="diagram-title">Onde cada ingrediente age nos 5 passos da celulite</div>
+      <svg viewBox="0 0 880 295" xmlns="http://www.w3.org/2000/svg">
+        <defs><style>.fm{font-family:'Plus Jakarta Sans',Arial,sans-serif;}</style></defs>
+        <rect x="18" y="15" width="178" height="24" rx="12" fill="#00A896" opacity=".15" stroke="#00A896" stroke-width="1"/>
+        <text x="107" y="31" text-anchor="middle" font-size="9" fill="#007F70" font-weight="700" class="fm">PILAR I — Ação Lipolítica</text>
+        <rect x="196" y="15" width="218" height="24" rx="12" fill="#3B82F6" opacity=".12" stroke="#3B82F6" stroke-width="1"/>
+        <text x="305" y="31" text-anchor="middle" font-size="9" fill="#1D4ED8" font-weight="700" class="fm">PILAR II — Venotónico / Antiedema</text>
+        <rect x="504" y="15" width="238" height="24" rx="12" fill="#C0392B" opacity=".12" stroke="#C0392B" stroke-width="1"/>
+        <text x="623" y="31" text-anchor="middle" font-size="9" fill="#9B2B1B" font-weight="700" class="fm">PILAR III — Reestruturante da Pele</text>
+        <rect x="18" y="55" width="125" height="52" rx="10" fill="#FFF7ED" stroke="#F4A261" stroke-width="2"/>
+        <text x="80" y="76" text-anchor="middle" font-size="9.5" font-weight="700" fill="#E07B3F" class="fm">PASSO 1</text>
+        <text x="80" y="91" text-anchor="middle" font-size="8" fill="#7C3E10" class="fm">Gordura</text>
+        <text x="80" y="103" text-anchor="middle" font-size="8" fill="#7C3E10" class="fm">acumulada</text>
+        <rect x="168" y="55" width="125" height="52" rx="10" fill="#FFF1F0" stroke="#E74C3C" stroke-width="2"/>
+        <text x="230" y="76" text-anchor="middle" font-size="9.5" font-weight="700" fill="#C0392B" class="fm">PASSO 2</text>
+        <text x="230" y="91" text-anchor="middle" font-size="8" fill="#7B1111" class="fm">Vasos</text>
+        <text x="230" y="103" text-anchor="middle" font-size="8" fill="#7B1111" class="fm">fragilizados</text>
+        <rect x="318" y="55" width="125" height="52" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+        <text x="380" y="76" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1D4ED8" class="fm">PASSO 3</text>
+        <text x="380" y="91" text-anchor="middle" font-size="8" fill="#1E3A8A" class="fm">Inchaço /</text>
+        <text x="380" y="103" text-anchor="middle" font-size="8" fill="#1E3A8A" class="fm">hipóxia</text>
+        <rect x="468" y="55" width="125" height="52" rx="10" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2"/>
+        <text x="530" y="76" text-anchor="middle" font-size="9.5" font-weight="700" fill="#D97706" class="fm">PASSO 4</text>
+        <text x="530" y="91" text-anchor="middle" font-size="8" fill="#92400E" class="fm">Colagénio</text>
+        <text x="530" y="103" text-anchor="middle" font-size="8" fill="#92400E" class="fm">destruído</text>
+        <rect x="618" y="55" width="130" height="52" rx="10" fill="#FEF2F1" stroke="#C0392B" stroke-width="2"/>
+        <text x="683" y="76" text-anchor="middle" font-size="9.5" font-weight="700" fill="#9B2B1B" class="fm">PASSO 5</text>
+        <text x="683" y="91" text-anchor="middle" font-size="8" fill="#7B1111" class="fm">Fibrosclerose</text>
+        <text x="683" y="103" text-anchor="middle" font-size="8" fill="#7B1111" class="fm">(endurecimento)</text>
+        <polygon points="148,76 160,81 148,86" fill="#D4E5E2"/>
+        <polygon points="298,76 310,81 298,86" fill="#D4E5E2"/>
+        <polygon points="448,76 460,81 448,86" fill="#D4E5E2"/>
+        <polygon points="598,76 610,81 598,86" fill="#D4E5E2"/>
+        <line x1="80" y1="107" x2="59" y2="202" stroke="#00A896" stroke-width="1.8" stroke-dasharray="4,3"/>
+        <rect x="18" y="202" width="82" height="46" rx="8" fill="#00A896"/>
+        <text x="59" y="220" text-anchor="middle" font-size="8.5" fill="white" font-weight="700" class="fm">CAFEÍNA</text>
+        <text x="59" y="232" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">Ativa lipólise</text>
+        <text x="59" y="242" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">(queima gordura)</text>
+        <line x1="80" y1="107" x2="146" y2="202" stroke="#2DB3A5" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <rect x="104" y="202" width="84" height="46" rx="8" fill="#2DB3A5"/>
+        <text x="146" y="220" text-anchor="middle" font-size="8.5" fill="white" font-weight="700" class="fm">CARNITINA</text>
+        <text x="146" y="232" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">Metabolismo</text>
+        <text x="146" y="242" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">das gorduras</text>
+        <line x1="230" y1="107" x2="236" y2="202" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="4,3"/>
+        <rect x="196" y="202" width="80" height="46" rx="8" fill="#3B82F6"/>
+        <text x="236" y="220" text-anchor="middle" font-size="8.5" fill="white" font-weight="700" class="fm">ESCINA</text>
+        <text x="236" y="232" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">Fortalece</text>
+        <text x="236" y="242" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">os vasos</text>
+        <line x1="380" y1="107" x2="322" y2="202" stroke="#2563EB" stroke-width="1.8" stroke-dasharray="4,3"/>
+        <rect x="282" y="202" width="80" height="46" rx="8" fill="#2563EB"/>
+        <text x="322" y="218" text-anchor="middle" font-size="8.5" fill="white" font-weight="700" class="fm">RUSCUS</text>
+        <text x="322" y="230" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">Circulação e</text>
+        <text x="322" y="240" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">drenagem</text>
+        <line x1="80" y1="107" x2="412" y2="202" stroke="#4CC9BE" stroke-width="1.2" stroke-dasharray="5,4" opacity=".5"/>
+        <rect x="374" y="202" width="76" height="46" rx="8" fill="#4CC9BE"/>
+        <text x="412" y="220" text-anchor="middle" font-size="8.5" fill="white" font-weight="700" class="fm">COLEUS</text>
+        <text x="412" y="232" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">Potencia</text>
+        <text x="412" y="242" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">a lipólise</text>
+        <line x1="530" y1="107" x2="507" y2="202" stroke="#C0392B" stroke-width="1.8" stroke-dasharray="4,3"/>
+        <line x1="683" y1="107" x2="507" y2="202" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4,3" opacity=".6"/>
+        <rect x="466" y="202" width="82" height="46" rx="8" fill="#C0392B"/>
+        <text x="507" y="220" text-anchor="middle" font-size="8.5" fill="white" font-weight="700" class="fm">RETINOL</text>
+        <text x="507" y="232" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">Estimula novo</text>
+        <text x="507" y="242" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.85)" class="fm">colagénio</text>
+        <text x="600" y="222" text-anchor="middle" font-size="8" fill="#5A7278" font-style="italic" class="fm">Linhas tracejadas =</text>
+        <text x="600" y="234" text-anchor="middle" font-size="8" fill="#5A7278" font-style="italic" class="fm">ação sobre o passo</text>
+      </svg>
+      <div class="diagram-caption">Cada ingrediente ativo atua em pontos específicos do ciclo. Os três pilares cobrem todos os passos: cafeína e carnitina atacam a gordura (passo 1), escina e ruscus reparam a circulação (passos 2–3), retinol reconstrói o colagénio (passos 4–5).</div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar fade fd1">
+        <div class="p-num">I</div>
+        <h4>Ação Lipolítica</h4>
+        <p class="p-sub">Como os ingredientes atuam sobre a gordura</p>
+        <div class="ing"><span class="ing-badge">INCI</span><div class="ing-info"><h6>Caffeine — Cafeína</h6><p>O ingrediente mais importante. Bloqueia uma enzima que "trava" a queima de gordura dentro das células. Com este travão inativado, os lóbulos de gordura começam a diminuir. Base de qualquer fórmula anticelulítica eficaz.</p></div></div>
+        <div class="ing"><span class="ing-badge">INCI</span><div class="ing-info"><h6>Carnitine — Carnitina</h6><p>Trabalha em equipa com a cafeína: acelera o metabolismo das células de gordura locais e ajuda o organismo a usar essas gorduras como energia — amplificando o efeito lipolítico.</p></div></div>
+        <div class="ing"><span class="ing-badge">INCI</span><div class="ing-info"><h6>Coleus Forskohlii Root Extract</h6><p>Extrato de uma planta que ativa a lipólise por uma via diferente da cafeína — somando dois estímulos distintos de metabolização de gordura na mesma fórmula.</p></div></div>
+        <div class="p-note"><p><strong>Como funciona:</strong> A cafeína bloqueia a fosfodiesterase → mais AMPc → ativa a lipase hormono-sensível → gordura armazenada começa a ser quebrada.</p></div>
+      </div>
+      <div class="pillar fade fd2">
+        <div class="p-num">II</div>
+        <h4>Ação Venotónica e Antiedema</h4>
+        <p class="p-sub">Como os ingredientes restauram a circulação</p>
+        <div class="ing"><span class="ing-badge">INCI</span><div class="ing-info"><h6>Escin — Escina</h6><p>Reforça as paredes dos capilares sanguíneos e reduz a sua porosidade — evita que o líquido "fuja" para fora dos vasos. Combate diretamente o edema e a falta de oxigénio que agravam a celulite.</p></div></div>
+        <div class="ing"><span class="ing-badge">INCI</span><div class="ing-info"><h6>Ruscus Aculeatus Root Extract</h6><p>Extrato de gilbardeira que favorece o fluxo sanguíneo e linfático, reduz o edema intersticial e combate a sensação de "pernas pesadas".</p></div></div>
+        <div class="p-note"><p><strong>Por que é essencial:</strong> Sem circulação saudável, os tecidos ficam sem oxigénio e cheios de líquidos — acelerando a fibrosclerose. Sem este pilar, os outros dois têm eficácia muito limitada.</p></div>
+      </div>
+      <div class="pillar fade fd3">
+        <div class="p-num">III</div>
+        <h4>Ação Reestruturante</h4>
+        <p class="p-sub">Como os ingredientes firmam a pele</p>
+        <div class="ing"><span class="ing-badge">INCI</span><div class="ing-info"><h6>Retinol</h6><p>Penetra nas camadas mais profundas da pele e estimula a produção de novo colagénio — tornando a pele mais espessa, elástica e capaz de resistir à pressão dos lóbulos de gordura. Resultado: pele mais lisa e firme. </p></div></div>
+        <div class="p-note"><p><strong>A imagem certa:</strong> O aspeto de "casca de laranja" acontece quando lóbulos empurram uma pele enfraquecida. O retinol funciona como "reforço estrutural" — torna a pele mais resistente à deformação.</p></div>
+      </div>
+    </div>
+
+    <div class="excip fade">
+      <h4>Os "Transportadores": como os ativos chegam onde precisam</h4>
+      <p class="excip-sub">Os excipientes não atuam sobre a celulite diretamente — mas sem eles os ativos ficavam retidos na superfície e nunca alcançavam as camadas profundas onde realmente atuam.</p>
+      <div class="excip-grid">
+        <div class="eitem"><div class="e-inci">Alcohol Denat.</div><div class="e-name">Abre caminho na pele</div><div class="e-func">Desorganiza temporariamente a camada protetora da pele, permitindo que os ativos a atravessem e cheguem às camadas mais profundas.</div></div>
+        <div class="eitem"><div class="e-inci">Lecithin</div><div class="e-name">Encapsula e transporta</div><div class="e-func">Forma pequenas "bolsas" (lipossomas) que encapsulam os ativos e os transportam diretamente para os tecidos-alvo, melhorando a absorção.</div></div>
+        <div class="eitem"><div class="e-inci">Glycerin</div><div class="e-name">Hidrata e protege</div><div class="e-func">Mantém a pele hidratada durante a aplicação, contrariando os efeitos secantes do álcool e facilitando a massagem.</div></div>
+        <div class="eitem"><div class="e-inci">Carbomer</div><div class="e-name">Dá textura de gel</div><div class="e-func">Confere a consistência fresca e gelatinosa — ideal para massagem e absorção rápida sem deixar resíduo gorduroso.</div></div>
+        <div class="eitem"><div class="e-inci">Menthyl Lactate</div><div class="e-name">Sensação de frescura</div><div class="e-func">Provoca uma sensação de frio imediata que estimula a constrição dos vasos superficiais e alivia a sensação de cansaço nas pernas.</div></div>
+        <div class="eitem"><div class="e-inci">Phenoxyethanol + Ethylhexylglycerin</div><div class="e-name">Conserva o produto</div><div class="e-func">Impedem o crescimento de bactérias e fungos, garantindo que o produto continua seguro e eficaz durante toda a sua vida útil.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== O ANTICELULÍTICO IDEAL ===================== -->
+<section id="ideal">
+  <div class="container">
+    <span class="sec-label">Escolher Bem</span>
+    <h2 class="sec-title">O Anticelulítico Ideal</h2>
+    <p class="sec-sub">Saber interpretar a embalagem de um produto é a competência mais valiosa para não desperdiçar dinheiro. Aqui apresentamos como seria um cosmético anticelulítico de referência — e ensinamos a ler cada elemento da embalagem.</p>
+
+    <div class="ideal-layout fade">
+      <div class="tube-viewer">
+        <div>
+          <div class="tube-label">🔵 Frente da embalagem</div>
+          <div class="tube-card">
+            <svg viewBox="0 0 340 480" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0A3040"/><stop offset="30%" stop-color="#0C3D50"/><stop offset="70%" stop-color="#0C3D50"/><stop offset="100%" stop-color="#08252F"/></linearGradient>
+                <linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1A5566"/><stop offset="50%" stop-color="#217080"/><stop offset="100%" stop-color="#154858"/></linearGradient>
+                <linearGradient id="sh1" x1="0%" y1="0%" x2="40%" y2="0%"><stop offset="0%" stop-color="rgba(255,255,255,0)"/><stop offset="50%" stop-color="rgba(255,255,255,.08)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+                <linearGradient id="al1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00A896"/><stop offset="100%" stop-color="#4CC9BE"/></linearGradient>
+                <style>.tb{font-family:'Plus Jakarta Sans',Arial,sans-serif;}.tbp{font-family:Georgia,serif;}</style>
+              </defs>
+              <rect x="90" y="18" width="160" height="45" rx="10" fill="url(#cg1)"/>
+              <rect x="70" y="60" width="200" height="390" rx="14" fill="url(#tg1)"/>
+              <rect x="70" y="108" width="200" height="3" fill="url(#al1)" opacity=".8"/>
+              <rect x="70" y="388" width="200" height="2" fill="url(#al1)" opacity=".5"/>
+              <text x="170" y="98" text-anchor="middle" font-size="9" fill="rgba(0,168,150,.7)" letter-spacing="3" font-weight="600" class="tb">CELULITECIÊNCIA</text>
+              <text x="170" y="158" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF" class="tbp">GEL</text>
+              <text x="170" y="180" text-anchor="middle" font-size="16" font-weight="400" fill="rgba(255,255,255,.7)" font-style="italic" class="tbp">Anticelulítico</text>
+              <text x="170" y="200" text-anchor="middle" font-size="13" font-weight="400" fill="rgba(255,255,255,.45)" class="tbp">Intensivo</text>
+              <line x1="110" y1="214" x2="230" y2="214" stroke="url(#al1)" stroke-width="1" opacity=".5"/>
+              <text x="170" y="240" text-anchor="middle" font-size="9.5" fill="#4CC9BE" font-weight="700" letter-spacing=".5" class="tb">● TRIPLA AÇÃO COMPROVADA</text>
+              <text x="170" y="258" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,.55)" class="tb">Lipólise · Venotónico · Reestruturante</text>
+              <text x="170" y="308" text-anchor="middle" font-size="32" font-weight="700" fill="#FFFFFF" class="tbp">200</text>
+              <text x="170" y="326" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)" class="tb">ml / 6.76 fl oz</text>
+              <text x="135" y="363" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.35)" class="tb">🐰 cruelty-free</text>
+              <text x="205" y="363" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.35)" class="tb">🌿 vegan</text>
+              <rect x="110" y="373" width="120" height="18" rx="9" fill="rgba(0,168,150,.2)" stroke="rgba(0,168,150,.5)" stroke-width="1"/>
+              <text x="170" y="386" text-anchor="middle" font-size="8" fill="#4CC9BE" font-weight="600" class="tb">Testado dermatologicamente</text>
+              <rect x="75" y="440" width="190" height="12" rx="4" fill="#08252F"/>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="tube-label">🔶 Verso da embalagem</div>
+          <div class="tube-card">
+            <svg viewBox="0 0 340 480" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="tg2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#09272E"/><stop offset="35%" stop-color="#0B3540"/><stop offset="65%" stop-color="#0B3540"/><stop offset="100%" stop-color="#071E25"/></linearGradient>
+                <style>.tb2{font-family:'Plus Jakarta Sans',Arial,sans-serif;}.tbm{font-family:'Courier New',monospace;}</style>
+              </defs>
+              <rect x="90" y="18" width="160" height="45" rx="10" fill="#154858"/>
+              <rect x="70" y="60" width="200" height="390" rx="14" fill="url(#tg2)"/>
+              <rect x="82" y="72" width="176" height="360" rx="6" fill="rgba(255,255,255,.04)"/>
+              <rect x="228" y="76" width="24" height="18" rx="3" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+              <path d="M228,82 L252,82" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+              <path d="M234,76 L234,73 L246,73 L246,76" stroke="rgba(255,255,255,.35)" stroke-width="1.5" fill="none"/>
+              <text x="240" y="91" text-anchor="middle" font-size="7" fill="rgba(255,255,255,.5)" font-weight="700" class="tb2">30M</text>
+              <text x="90" y="88" font-size="7" fill="rgba(255,255,255,.3)" class="tb2">LOT: BC2601</text>
+              <text x="90" y="100" font-size="7" fill="rgba(255,255,255,.3)" class="tb2">VAL: 06/2028</text>
+              <text x="170" y="126" text-anchor="middle" font-size="9" fill="#4CC9BE" font-weight="700" letter-spacing=".5" class="tb2">MODO DE UTILIZAÇÃO</text>
+              <line x1="88" y1="131" x2="252" y2="131" stroke="rgba(0,168,150,.3)" stroke-width="1"/>
+              <text x="170" y="146" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.52)" class="tb2">Aplicar 2x/dia em pele limpa.</text>
+              <text x="170" y="158" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.52)" class="tb2">Massajar até absorção completa.</text>
+              <text x="170" y="170" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,.52)" class="tb2">Mínimo 12 semanas.</text>
+              <text x="170" y="196" text-anchor="middle" font-size="9" fill="#4CC9BE" font-weight="700" letter-spacing=".5" class="tb2">LISTA INCI</text>
+              <line x1="88" y1="201" x2="252" y2="201" stroke="rgba(0,168,150,.3)" stroke-width="1"/>
+              <text x="90" y="216" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm">AQUA, ALCOHOL DENAT.,</text>
+              <text x="90" y="228" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm">GLYCERIN, <tspan fill="#4ECDC4" font-weight="700">CAFFEINE</tspan>,</text>
+              <text x="90" y="240" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm"><tspan fill="#4ECDC4" font-weight="700">CARNITINE</tspan>, LECITHIN,</text>
+              <text x="90" y="252" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm"><tspan fill="#4ECDC4" font-weight="700">ESCIN</tspan>, <tspan fill="#4ECDC4" font-weight="700">RETINOL</tspan>,</text>
+              <text x="90" y="264" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm"><tspan fill="#4ECDC4" font-weight="700">COLEUS FORSKOHLII</tspan>,</text>
+              <text x="90" y="276" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm"><tspan fill="#4ECDC4" font-weight="700">RUSCUS ACULEATUS</tspan>,</text>
+              <text x="90" y="288" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm">MENTHYL LACTATE,</text>
+              <text x="90" y="300" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm">CARBOMER, PHENOXYETHANOL,</text>
+              <text x="90" y="312" font-size="6.5" fill="rgba(255,255,255,.45)" class="tbm">ETHYLHEXYLGLYCERIN, PARFUM</text>
+              <text x="170" y="338" text-anchor="middle" font-size="9" fill="#4CC9BE" font-weight="700" letter-spacing=".5" class="tb2">PRECAUÇÕES</text>
+              <line x1="88" y1="343" x2="252" y2="343" stroke="rgba(0,168,150,.3)" stroke-width="1"/>
+              <text x="170" y="358" text-anchor="middle" font-size="6.8" fill="rgba(255,255,255,.4)" class="tb2">Uso externo. Evitar olhos.</text>
+              <text x="170" y="370" text-anchor="middle" font-size="6.8" fill="rgba(255,255,255,.4)" class="tb2">Não usar em pele irritada.</text>
+              <text x="170" y="382" text-anchor="middle" font-size="6.8" fill="rgba(255,255,255,.4)" class="tb2">Manter fora do alcance de crianças.</text>
+              <rect x="116" y="400" width="50" height="24" rx="2" fill="white"/>
+              <line x1="120" y1="402" x2="120" y2="420" stroke="black" stroke-width="1"/><line x1="122" y1="402" x2="122" y2="420" stroke="black" stroke-width="2"/><line x1="125" y1="402" x2="125" y2="420" stroke="black" stroke-width="1"/><line x1="128" y1="402" x2="128" y2="420" stroke="black" stroke-width="2"/><line x1="130" y1="402" x2="130" y2="420" stroke="black" stroke-width="1"/><line x1="133" y1="402" x2="133" y2="420" stroke="black" stroke-width="1"/><line x1="136" y1="402" x2="136" y2="420" stroke="black" stroke-width="2"/><line x1="138" y1="402" x2="138" y2="420" stroke="black" stroke-width="1"/><line x1="141" y1="402" x2="141" y2="420" stroke="black" stroke-width="2"/>
+              <text x="141" y="422" text-anchor="middle" font-size="4" fill="black" class="tb2">5 600000 000000</text>
+              <rect x="75" y="440" width="190" height="12" rx="4" fill="#071E25"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="ideal-guide">
+        <div class="guide-block">
+          <h5><span>①</span> O que procurar na frente da embalagem</h5>
+          <p>A frente diz-lhe o que o produto promete — avalie estas promessas com critério:</p>
+          <div class="label-decode">
+            <div class="decode-row"><span class="decode-badge ok">✓ Válido</span><span class="decode-txt"><strong>"Tripla ação: Lipólise · Venotónico · Reestruturante"</strong> — promessas específicas e verificáveis que correspondem a mecanismos reais.</span></div>
+            <div class="decode-row"><span class="decode-badge ok">✓ Válido</span><span class="decode-txt"><strong>"Testado dermatologicamente"</strong> — garante que o produto foi testado quanto à segurança em pele humana. Não garante eficácia anticelulítica.</span></div>
+            <div class="decode-row"><span class="decode-badge warn">⚠ Atenção</span><span class="decode-txt"><strong>"Cruelty-free" / "Vegan"</strong> — dizem algo sobre os ingredientes e processo, mas nada sobre eficácia. Um creme vegan pode ser completamente ineficaz.</span></div>
+            <div class="decode-row"><span class="decode-badge bad">✕ Fuga</span><span class="decode-txt"><strong>"Elimina" / "100%" / "em 48h"</strong> — se a frente usar estas palavras, é marketing enganoso. Recuse.</span></div>
+          </div>
+        </div>
+        <div class="guide-block">
+          <h5><span>②</span> Como ler a lista INCI no verso</h5>
+          <p>Esta é a informação mais importante. Procure os ativos chave nas primeiras metade da lista:</p>
+          <div class="inci-highlight">AQUA, ALCOHOL DENAT., GLYCERIN, <span class="key">CAFFEINE</span>, <span class="key">CARNITINE</span>, LECITHIN, <span class="key">ESCIN</span>, <span class="key">RETINOL</span>, <span class="key">COLEUS FORSKOHLII</span>, <span class="key">RUSCUS ACULEATUS</span>, ...</div>
+          <div class="label-decode" style="margin-top:.75rem">
+            <div class="decode-row"><span class="decode-badge ok">Pilar I</span><span class="decode-txt">CAFFEINE + CARNITINE + COLEUS FORSKOHLII → atuam sobre a gordura</span></div>
+            <div class="decode-row"><span class="decode-badge ok">Pilar II</span><span class="decode-txt">ESCIN + RUSCUS ACULEATUS → circulação e antiedema</span></div>
+            <div class="decode-row"><span class="decode-badge ok">Pilar III</span><span class="decode-txt">RETINOL → firmeza e colagénio novo</span></div>
+            <div class="decode-row"><span class="decode-badge bad">Fuja</span><span class="decode-txt">Lista com 30+ ingredientes mas nenhum dos acima → produto de marketing sem substância.</span></div>
+          </div>
+        </div>
+        <div class="guide-block">
+          <h5><span>③</span> Prazo de validade e PAO</h5>
+          <ul>
+            <li><strong>Data de validade (VAL / EXP):</strong> garante que o produto ainda está estável e eficaz. Use sempre dentro do prazo.</li>
+            <li><strong>PAO — Period After Opening (🥫 com número):</strong> "30M" significa que após abrir, o produto deve ser usado nos 30 meses seguintes. O retinol é especialmente sensível à oxidação — respeite este prazo.</li>
+            <li><strong>Guarde ao abrigo da luz e calor:</strong> o retinol degrada-se com exposição à luz e temperaturas altas — prefira embalagens opacas e armazenamento fresco.</li>
+          </ul>
+        </div>
+        <div class="guide-block">
+          <h5><span>④</span> As alegações corretas que deve procurar</h5>
+          <ul>
+            <li>Reduz a <em>aparência</em> da celulite (não "elimina")</li>
+            <li>Resultados visíveis após 8 a 12 semanas de uso contínuo</li>
+            <li>Melhora a firmeza e a elasticidade da pele</li>
+            <li>Estimula a microcirculação local</li>
+            <li>Reduz a retenção de líquidos</li>
+            <li>Estudos de eficácia realizados com painel de voluntárias</li>
+          </ul>
+        </div>
+        <div class="guide-block" style="background:rgba(0,168,150,.12);border-color:rgba(0,168,150,.3)">
+          <h5><span style="background:#4CC9BE">✓</span> O checklist de compra rápido</h5>
+          <ul>
+            <li>Contém CAFFEINE ou CAFEÍNA na lista INCI? → obrigatório</li>
+            <li>Contém ESCIN ou RUSCUS? → muito importante</li>
+            <li>Contém RETINOL? → excelente para firmeza</li>
+            <li>A frente não usa "elimina" nem "100%"? → bom sinal</li>
+            <li>PAO ≥ 12 meses e data de validade visível? → produto de qualidade</li>
+            <li>Embalagem opaca ou com proteção UV? → protege o retinol</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APLICAÇÃO & AVALIAÇÃO ===================== -->
+<section id="aplicacao">
+  <div class="container">
+    <span class="sec-label">Como Usar</span>
+    <h2 class="sec-title">Como aplicar e quando esperar resultados</h2>
+    <p class="sec-sub">A forma como usa o produto é tão importante como o que está dentro dele. Um bom cosmético mal aplicado dá resultados medíocres. Um produto correto, bem aplicado durante tempo suficiente, pode fazer uma diferença real.</p>
+
+    <div class="aplic-grid">
+      <div class="fade">
+        <h3 style="margin-bottom:1.4rem;font-size:1.35rem">O protocolo passo a passo</h3>
+        <ol class="aplic-steps">
+          <li class="astep"><div class="astep-icon">🚿</div><div class="astep-txt"><h5>Pele limpa e seca primeiro</h5><p>Aplique sempre sobre pele higienizada e completamente seca. As zonas a aplicar são as coxas, nádegas, ancas e barriga — as mais frequentemente afetadas.</p></div></li>
+          <li class="astep"><div class="astep-icon">🖐️</div><div class="astep-txt"><h5>A massagem não é opcional — é parte da rotina</h5><p>Massaje com movimentos suaves e circulares, usando a palma da mão, até o gel ser completamente absorvido. A massagem trabalha em sinergia com os ingredientes venotónicos: melhora a circulação e ativa a drenagem dos líquidos. Sem ela, a eficácia cai substancialmente.</p></div></li>
+          <li class="astep"><div class="astep-icon">☀️</div><div class="astep-txt"><h5>Manhã e noite, sem falhar</h5><p>Aplique duas vezes por dia, todos os dias. A regularidade é essencial para manter os ativos em concentração suficiente nos tecidos e sustentar o efeito venotónico ao longo do dia e da noite.</p></div></li>
+          <li class="astep"><div class="astep-icon">📅</div><div class="astep-txt"><h5>Mínimo de 12 semanas seguidas</h5><p>Os resultados mensuráveis surgem a partir de 84 dias de uso continuado. Paragens frequentes comprometem o resultado final.</p></div></li>
+        </ol>
+        <div class="timeline-hl">
+          <span class="thl-val">84 dias</span>
+          <div class="thl-lbl">de aplicação bidiária sem interrupção para resultados clinicamente mensuráveis</div>
+        </div>
+      </div>
+
+      <div class="fade fd2">
+        <div class="eval-section">
+          <div class="eval-section-title">🔬 Como é avaliada a eficácia clinicamente</div>
+          <div class="eval-list">
+            <div class="eval-item"><div class="eval-ic">📸</div><div class="eval-txt"><h5>Escala de Nürnberger-Müller (0 a 3)</h5><p>Fotografias padronizadas em tons de cinzento, avaliadas por três especialistas em "modo cego". Escala de 0 (sem celulite) a 3 (celulite severa) — método de referência na literatura científica.</p></div></div>
+            <div class="eval-item"><div class="eval-ic">💻</div><div class="eval-txt"><h5>Software de análise de imagem</h5><p>Algoritmo mede as ondulações da pele: pele lisa = 0; celulite visível = 200 a 10 000. Elimina a subjetividade humana da avaliação.</p></div></div>
+            <div class="eval-item"><div class="eval-ic">🔬</div><div class="eval-txt"><h5>Cutometer® — mede a firmeza da pele</h5><p>Aparelho que mede a elasticidade da pele por sucção controlada. Resultados de 0 (fluida) a 1 (sólida) — avalia diretamente o estado do colagénio dérmico.</p></div></div>
+            <div class="eval-item"><div class="eval-ic">🩸</div><div class="eval-txt"><h5>Laser Doppler — mede a circulação</h5><p>Laser não invasivo que analisa o fluxo sanguíneo na pele. Valida se os ingredientes venotónicos estão a melhorar efetivamente a microcirculação local.</p></div></div>
+            <div class="eval-item"><div class="eval-ic">📏</div><div class="eval-txt"><h5>Medição da circunferência</h5><p>Com fita de fibra de vidro e pontos de referência marcados — p. ex., 10 e 20 cm acima do joelho — para garantir que se mede sempre exatamente o mesmo local ao longo das 12 semanas.</p></div></div>
+          </div>
+        </div>
+
+        <div class="eval-section" style="margin-bottom:0">
+          <div class="eval-section-title">🏠 Como avaliar em casa: a escala visual da celulite</div>
+          <div class="scale-visual">
+            <div class="scale-title">Escala de Nürnberger-Müller — os 4 graus</div>
+            <div class="scale-grid">
+              <div class="scale-item">
+                <svg viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="110" height="90" fill="#F5E6D0"/>
+                  <ellipse cx="55" cy="45" rx="48" ry="38" fill="#E8A870"/>
+                  <path d="M12,30 Q55,27 98,30" fill="none" stroke="rgba(180,120,70,.2)" stroke-width="1"/>
+                  <path d="M12,45 Q55,42 98,45" fill="none" stroke="rgba(180,120,70,.2)" stroke-width="1"/>
+                  <path d="M12,60 Q55,57 98,60" fill="none" stroke="rgba(180,120,70,.2)" stroke-width="1"/>
+                  <ellipse cx="38" cy="35" rx="20" ry="12" fill="rgba(255,255,255,.15)"/>
+                </svg>
+                <div class="scale-badge"><span>Grau 0</span><small>Sem celulite visível</small></div>
+              </div>
+              <div class="scale-item">
+                <svg viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="110" height="90" fill="#F5E6D0"/>
+                  <ellipse cx="55" cy="45" rx="48" ry="38" fill="#E8A870"/>
+                  <ellipse cx="30" cy="38" rx="14" ry="10" fill="#F0B880" opacity=".6"/>
+                  <ellipse cx="55" cy="42" rx="16" ry="11" fill="#F0B880" opacity=".5"/>
+                  <ellipse cx="80" cy="38" rx="13" ry="9" fill="#F0B880" opacity=".6"/>
+                  <path d="M44,38 Q48,43 44,50" fill="none" stroke="rgba(160,100,50,.3)" stroke-width="1"/>
+                </svg>
+                <div class="scale-badge"><span>Grau 1</span><small>Só ao comprimir</small></div>
+              </div>
+              <div class="scale-item">
+                <svg viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="110" height="90" fill="#F5E6D0"/>
+                  <ellipse cx="55" cy="45" rx="48" ry="38" fill="#E8A870"/>
+                  <ellipse cx="28" cy="33" rx="13" ry="10" fill="#F4A261" opacity=".8"/>
+                  <ellipse cx="50" cy="38" rx="15" ry="12" fill="#F4A261" opacity=".75"/>
+                  <ellipse cx="76" cy="33" rx="13" ry="10" fill="#F4A261" opacity=".8"/>
+                  <ellipse cx="38" cy="52" rx="14" ry="11" fill="#F4A261" opacity=".7"/>
+                  <ellipse cx="66" cy="54" rx="13" ry="10" fill="#F4A261" opacity=".75"/>
+                  <line x1="40" y1="28" x2="40" y2="48" stroke="rgba(140,80,30,.4)" stroke-width="1.2"/>
+                  <line x1="62" y1="28" x2="62" y2="48" stroke="rgba(140,80,30,.4)" stroke-width="1.2"/>
+                </svg>
+                <div class="scale-badge"><span>Grau 2</span><small>Visível em pé</small></div>
+              </div>
+              <div class="scale-item">
+                <svg viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="110" height="90" fill="#F5E6D0"/>
+                  <ellipse cx="55" cy="45" rx="48" ry="38" fill="#D4905A"/>
+                  <ellipse cx="24" cy="30" rx="13" ry="10" fill="#F4A261" opacity=".9"/>
+                  <ellipse cx="45" cy="26" rx="12" ry="9" fill="#E8903A" opacity=".85"/>
+                  <ellipse cx="68" cy="30" rx="13" ry="10" fill="#F4A261" opacity=".9"/>
+                  <ellipse cx="86" cy="36" rx="12" ry="9" fill="#E8903A" opacity=".8"/>
+                  <ellipse cx="32" cy="47" rx="14" ry="11" fill="#F4A261" opacity=".85"/>
+                  <ellipse cx="58" cy="44" rx="14" ry="12" fill="#E8903A" opacity=".9"/>
+                  <ellipse cx="80" cy="50" rx="13" ry="10" fill="#F4A261" opacity=".85"/>
+                  <line x1="37" y1="23" x2="37" y2="45" stroke="rgba(120,60,20,.55)" stroke-width="1.5"/>
+                  <line x1="57" y1="23" x2="57" y2="42" stroke="rgba(120,60,20,.5)" stroke-width="1.5"/>
+                  <line x1="76" y1="27" x2="76" y2="48" stroke="rgba(120,60,20,.5)" stroke-width="1.5"/>
+                </svg>
+                <div class="scale-badge"><span>Grau 3</span><small>Celulite severa</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="at-home-tips">
+            <h5>Como fazer a sua avaliação em casa</h5>
+            <ul>
+              <li>Escolha sempre a mesma hora do dia (ex: manhã, antes do duche) para comparações consistentes</li>
+              <li>Observe a mesma zona (ex: face lateral da coxa direita) com a mesma posição do corpo (em pé, relaxada)</li>
+              <li>Tire uma fotografia padronizada com a mesma distância e iluminação lateral — a luz lateral revela melhor o relevo</li>
+              <li>Meça a circunferência da coxa com uma fita métrica sempre no mesmo ponto (ex: 15 cm acima do joelho)</li>
+              <li>Comprima suavemente a zona — se a celulite só aparece ao comprimir é grau 1; se está visível em repouso, é grau 2 ou 3</li>
+              <li>Avalie ao final de 4, 8 e 12 semanas — compare sempre com a foto inicial</li>
+            </ul>
+          </div>
+
+          <div class="eval-item" style="margin-top:.85rem;background:var(--bg)">
+            <div class="eval-ic">📋</div>
+            <div class="eval-txt">
+              <h5>Autoavaliação subjetiva (também conta)</h5>
+              <p>Pontuação pessoal de 0 a 10 para: suavidade da pele ao toque, firmeza visual, sensação de leveza nas pernas e redução do aspeto irregular. A perceção pessoal é uma medida de eficácia igualmente válida.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MITOS ===================== -->
+<section id="mitos">
+  <div class="container">
+    <span class="sec-label">O que é verdade e o que é mito</span>
+    <h2 class="sec-title">Mitos vs. Factos</h2>
+    <p class="sec-sub">A celulite é uma das condições com mais desinformação a circular — nas redes sociais, na televisão e até em consultórios. Clique em cada afirmação para saber o que a ciência realmente diz.</p>
+
+    <div class="accordion fade">
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge mito">Mito</span><span class="acc-q">Os cosméticos anticelulite não fazem absolutamente nada.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Falso — mas com uma condição importante.</strong> Os cosméticos com ingredientes cientificamente validados (cafeína, escina, retinol) têm eficácia fisiológica demonstrada em estudos clínicos: melhoram a microcirculação, ativam a lipólise e aumentam a firmeza da derme. O Cutometer® e a análise de imagem mostram melhorias mensuráveis após 12 semanas de uso bidiário (Bilodeau et al., 2014). O que os cosméticos não conseguem é eliminar a celulite de forma permanente ou completa. <strong>Produto certo + protocolo correto = diferença visível.</strong></p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge mito">Mito</span><span class="acc-q">Com um bom creme, a "casca de laranja" desaparece completamente.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Falso.</strong> A celulite é uma condição estrutural — tem a ver com a arquitetura das fibras de colagénio, o tamanho dos lóbulos de gordura e o dimorfismo sexual. Os cosméticos atuam sobre os fatores que <em>agravam</em> a sua aparência (edema, circulação fraca, pele fina) mas não alteram a estrutura anatómica profunda. Atenuam, reduzem, melhoram — mas não "curam" a 100%. Uma abordagem multimodal (cosmético + exercício + alimentação) produz os melhores resultados (Gabriel et al., 2023).</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge mito">Mito</span><span class="acc-q">Beber mais água elimina a celulite.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Falso — mas a hidratação ajuda a pele.</strong> Beber água é essencial para a saúde geral e melhora a elasticidade da pele — o que pode atenuar ligeiramente a aparência da celulite. Mas a água não atua sobre os mecanismos que a causam: não dissolve as fibras endurecidas, não reduz os lóbulos de gordura hipertrofiados, nem repara a microcirculação. Só por si, não é uma abordagem eficaz.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge mito">Mito</span><span class="acc-q">A celulite só aparece em pessoas com excesso de peso.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Falso.</strong> Pessoas muito magras também podem ter celulite. A condição depende principalmente de fatores estruturais (disposição dos septos fibrosos), hormonais (ação dos estrogénios) e genéticos — não apenas da quantidade de gordura corporal. O excesso de peso agrava a celulite porque aumenta os lóbulos adiposos, mas não é necessário para ela aparecer. Após a puberdade, qualquer mulher pode desenvolver celulite independentemente do seu peso.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge verd">Verdade</span><span class="acc-q">O exercício físico regular ajuda a reduzir a celulite.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Verdade.</strong> O exercício cardiovascular e de força melhora a circulação sanguínea, tónus muscular e contribui para a redução da gordura corporal — tornando a pele com aspeto mais liso e firme. Atua sobre dois mecanismos centrais da celulite: reduz a hipertrofia dos adipócitos e melhora a microcirculação. É um complemento de primeira linha em qualquer protocolo anticelulítico sério.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge mito">Mito</span><span class="acc-q">Só as mulheres têm celulite cosmética.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Falso — mas é muito raro nos homens.</strong> Os homens representam apenas ~2% dos casos, quase sempre em situações específicas: défice de testosterona, doenças hormonais, ou contextos com estrogénios elevados. A razão é estrutural: os homens têm os septos fibrosos dispostos em rede entrecruzada (não verticais), o que dá muito mais resistência à herniação dos lóbulos de gordura.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge mito">Mito</span><span class="acc-q">Comer gelatina reduz a celulite de forma eficaz.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Falso.</strong> Não há evidência científica que apoie este efeito. A gelatina contém colagénio hidrolisado — mas quando o comemos, o organismo divide-o em aminoácidos distribuídos pelo corpo todo, sem direcionamento específico para a pele das coxas. Para efeito real no colagénio dérmico, é preciso um ativo (como o retinol) aplicado diretamente na pele.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge verd">Verdade</span><span class="acc-q">O álcool e os refrigerantes agravam a celulite.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Verdade.</strong> Os refrigerantes têm muito açúcar (alimenta o crescimento dos lóbulos de gordura) e sódio (provoca retenção de líquidos e edema — dois dos principais mecanismos da celulite). O álcool é calórico e favorece o acúmulo de gordura subcutânea. Ambos, consumidos regularmente e em excesso, alimentam ativamente o ciclo vicioso da celulite.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><div class="acc-left"><span class="acc-badge verd">Verdade</span><span class="acc-q">A genética tem muito peso na predisposição para a celulite.</span></div><span class="acc-arrow">▼</span></div>
+        <div class="acc-body"><p><strong>Verdade — mas não é um destino inevitável.</strong> A genética influencia a arquitetura dos septos, a distribuição da gordura, a sensibilidade hormonal e o metabolismo do colagénio. Mesmo com alta predisposição genética, é possível minimizar bastante a expressão da celulite através de exercício, alimentação cuidada, cosméticos adequados e evitando fatores de risco como tabagismo e sedentarismo.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REFERÊNCIAS BIBLIOGRÁFICAS ===================== -->
+<section id="referencias">
+  <div class="container">
+    <div class="ref-header fade">
+      <span class="sec-label">Evidência Científica</span>
+      <h2 class="sec-title">Referências Bibliográficas</h2>
+      <p class="sec-sub">O conteúdo deste guia é fundamentado em literatura científica. 
+  Apresentam-se abaixo as referências utilizadas. </p>
+    </div>
+
+    <div class="ref-grid fade fd1">
+
+<div class="ref-item">
+        <div class="ref-num">1</div>
+        <div class="ref-body">
+          <div class="ref-authors">Barnes, T. M., Mijaljica, D., Townley, J. P., Spada, F., & Harrison, I. P. (2021).</div>
+          <div class="ref-title">Vehicles for Drug Delivery and Cosmetic Moisturizers.</div>
+          <div class="ref-journal"><em>Review and Comparison. Pharmaceutics</em>, 13(12), 2012..</div>
+          <a class="ref-doi" href="https://doi.org/10.3390/pharmaceutics13122012" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            doi: 10.1111/j.1468-3083.2009.03355.x
+          </a>
+        </div>
+      </div>
+
+      <div class="ref-item">
+        <div class="ref-num">1</div>
+        <div class="ref-body">
+          <div class="ref-authors">Bayrakci Tunay, V., Akbayrak, T., Bakar, Y., Kayihan, H., &amp; Ergun, N. (2010).</div>
+          <div class="ref-title">Effects of mechanical massage, manual lymphatic drainage and connective tissue manipulation techniques on fat mass in women with cellulite.</div>
+          <div class="ref-journal"><em>Journal of the European Academy of Dermatology and Venereology</em>, 24(2), 138–142.</div>
+          <a class="ref-doi" href="https://doi.org/10.1111/j.1468-3083.2009.03355.x" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            doi: 10.1111/j.1468-3083.2009.03355.x
+          </a>
+        </div>
+      </div>
+
+      <div class="ref-item">
+        <div class="ref-num">2</div>
+        <div class="ref-body">
+          <div class="ref-authors">Bilodeau, D., Dupont, É., Journet, M., Oula, M.-L., Gomez, J., Léveillé, C., &amp; Loing, E. (2014).</div>
+          <div class="ref-title">An integral topical gel for cellulite reduction: results from a double-blind, randomized, placebo-controlled evaluation of efficacy.</div>
+          <div class="ref-journal"><em>Clinical, Cosmetic and Investigational Dermatology</em>, 7, 73.</div>
+          <a class="ref-doi" href="https://doi.org/10.2147/ccid.s53580" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            doi: 10.2147/ccid.s53580
+          </a>
+        </div>
+      </div>
+
+      <div class="ref-item">
+        <div class="ref-num">3</div>
+        <div class="ref-body">
+          <div class="ref-authors">Gabriel, A., Chan, V., Caldarella, M., Wayne, T., &amp; O'Rorke, E. (2023).</div>
+          <div class="ref-title">Cellulite: Current Understanding and Treatment.</div>
+          <div class="ref-journal"><em>Aesthetic Surgery Journal</em>, 5.</div>
+          <a class="ref-doi" href="https://doi.org/10.1093/asjof/ojad050" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            doi: 10.1093/asjof/ojad050
+          </a>
+        </div>
+      </div>
+
+      <div class="ref-item">
+        <div class="ref-num">4</div>
+        <div class="ref-body">
+          <div class="ref-authors">Ngamdokmai, N., Waranuch, N., Chootip, K., Jampachaisri, K., Scholfield, C. N., &amp; Ingkaninan, K. (2021).</div>
+          <div class="ref-title">Efficacy of an Anti-Cellulite Herbal Emgel: A Randomized Clinical Trial.</div>
+          <div class="ref-journal"><em>Pharmaceuticals</em>, 14(7), 683.</div>
+          <a class="ref-doi" href="https://doi.org/10.3390/ph14070683" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            doi: 10.3390/ph14070683
+          </a>
+        </div>
+      </div>
+
+      <div class="ref-item">
+        <div class="ref-num">5</div>
+        <div class="ref-body">
+          <div class="ref-authors">Rusu, A., Mazilu, R.-D., Székely-Szentmiklósi, B., Oancea, O.-L., Tanase, C., Lungu, I.-A., &amp; Hancu, G. (2026).</div>
+          <div class="ref-title">Bioactive Compounds for Topical and Minimally Invasive Cellulite Treatment and Skin Rejuvenation.</div>
+          <div class="ref-journal"><em>Cosmetics</em>, 13(1), 35.</div>
+          <a class="ref-doi" href="https://doi.org/10.3390/cosmetics13010035" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            doi: 10.3390/cosmetics13010035
+          </a>
+        </div>
+      </div>
+
+      <div class="ref-item">
+        <div class="ref-num">6</div>
+        <div class="ref-body">
+          <div class="ref-authors">Sadowski, T., Bielfeldt, S., Wilhelm, K. P., Sukopp, S., &amp; Gordon, C. (2020).</div>
+          <div class="ref-title">Objective and subjective reduction of cellulite volume using a localized vibrational massage device in a 24-week randomized intra-individual single-blind regression study.</div>
+          <div class="ref-journal"><em>International Journal of Cosmetic Science</em>, 42(3), 277–288.</div>
+          <a class="ref-doi" href="https://doi.org/10.1111/ics.12613" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            doi: 10.1111/ics.12613
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="ref-note fade fd2">Este guia tem fins exclusivamente académicos e de literacia em saúde. As referências apresentadas são fontes primárias de investigação científica publicadas em revistas com revisão por pares. A inclusão de uma referência não implica endosso comercial de qualquer produto. Para decisões clínicas individuais, consulte sempre um profissional de saúde qualificado.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="f-inner">
+    <div class="f-brand">Celulite<span>Ciência</span></div>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.38);margin-top:.2rem">Guia de Saúde Cosmética</p>
+    <p class="f-disc">Este site foi desenvolvido exclusivamente para fins académicos e de literacia em saúde. O conteúdo baseia-se em evidência científica publicada e não constitui aconselhamento médico. Para diagnóstico ou abordagem individualizada, consulte sempre um profissional de saúde qualificado.</p>
+    <p style="font-size:.82rem;color:rgba(44, 220, 230,.5);margin-top:.5rem;font-weight:bold">Discentes: Cíntia Matos, Diogo Serdeira, Filipe Mandrea e Inês Madaleno</p>
+    <p style="font-size:.82rem;color:rgba(44, 220, 230,.5);margin-top:.5rem;font-weight:bold">Docentes: Ana Júlio, Catarina Rosado e Thalita Cândido</p>
+    <p style="font-size:.82rem;color:rgba(44, 220, 230,.5);margin-top:.5rem;text-decoration:underline;font-weight:bold">Dermofarmácia</p>
+    <p class="f-copy">© 2026 · Todos os direitos reservados · Desenvolvido para fins académicos de literacia em saúde</p>
+  </div>
+</footer>
+
+
+<script>
+const bar = document.getElementById('scroll-bar');
+window.addEventListener('scroll', () => {
+  const max = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (window.scrollY / max * 100) + '%';
+}, {passive:true});
+
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-link');
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+secs.forEach(s => navObs.observe(s));
+
+const toggle = document.getElementById('navToggle');
+const nl = document.getElementById('navLinks');
+toggle.addEventListener('click', () => nl.classList.toggle('open'));
+nl.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => nl.classList.remove('open')));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 68, behavior: 'smooth' });
+  });
+});
+
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); fadeObs.unobserve(e.target); } });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fade').forEach(el => fadeObs.observe(el));
+
+document.querySelectorAll('.acc-head').forEach(h => {
+  h.addEventListener('click', () => {
+    const item = h.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
+
